@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:s0="http://tempuri.org" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org">
+      <s:element name="FileClientChargeInput">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="SystemCode" type="s:string" />
+            <s:element minOccurs="0" name="UserName" type="s:string" />
+            <s:element minOccurs="0" name="Password" type="s:string" />
+            <s:element minOccurs="0" name="ClientChargeInputInfo" type="s0:ClientChargeInputObject" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ClientChargeInputObject">
+        <s:sequence>
+          <s:element minOccurs="0" name="AppointmentConfirmed">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="1" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="AppointmentDate" type="s:date" />
+          <s:element minOccurs="0" name="AppointmentEndTime" type="s:string" />
+          <s:element minOccurs="0" name="AppointmentNotes">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="32766" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="AppointmentSite" type="s:string" />
+          <s:element minOccurs="0" name="AppointmentStartTime" type="s:string" />
+          <s:element minOccurs="0" name="AppointmentStatus" type="s:string" />
+          <s:element minOccurs="0" name="Billable">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="1" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="ClientID" type="s:string" />
+          <s:element minOccurs="0" name="CoPractitioner" type="s:string" />
+          <s:element minOccurs="0" name="ConfirmationNotes">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="32766" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="CostOfService" type="s:decimal" />
+          <s:element minOccurs="0" name="DateOfService" type="s:date" />
+          <s:element minOccurs="0" name="Duration" type="s:long" />
+          <s:element minOccurs="0" name="EpisodeNumber" type="s:long" />
+          <s:element minOccurs="0" name="GroupNumber" type="s:long" />
+          <s:element minOccurs="0" name="Location" type="s:string" />
+          <s:element minOccurs="0" name="MedicalDiagnosis1" type="s:string" />
+          <s:element minOccurs="0" name="MedicalDiagnosis2" type="s:string" />
+          <s:element minOccurs="0" name="MissedVisit">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="1" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="MissedVisitNotes">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="32766" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="MissedVisitServiceCode" type="s:string" />
+          <s:element minOccurs="0" name="Modifiers" type="s:string" />
+          <s:element minOccurs="0" name="NoteReferenceCode837Billing" type="s:string" />
+          <s:element minOccurs="0" name="NoteReferenceText837Billing" type="s:string" />
+          <s:element minOccurs="0" name="NumberOfClients" type="s:long" />
+          <s:element minOccurs="0" name="OralCavityDesignationCode" type="s:string" />
+          <s:element minOccurs="0" name="Practitioner" type="s:string" />
+          <s:element minOccurs="0" name="PriorPlacementDate" type="s:date" />
+          <s:element minOccurs="0" name="Program" type="s:string" />
+          <s:element minOccurs="0" name="ProsthesisCrownOrInlayCode" type="s:string" />
+          <s:element minOccurs="0" name="ReferringPractitioner" type="s:string" />
+          <s:element minOccurs="0" name="ReferringProvider" type="s:string" />
+          <s:element minOccurs="0" name="SSTxMultipleSelectDictionary1" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentDSMCode1" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentDSMCode2" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentDSMCode3" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentDSMCode4" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentDSMCode5" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentDate1" type="s:date" />
+          <s:element minOccurs="0" name="SSTreatmentDate2" type="s:date" />
+          <s:element minOccurs="0" name="SSTreatmentDate3" type="s:date" />
+          <s:element minOccurs="0" name="SSTreatmentDate4" type="s:date" />
+          <s:element minOccurs="0" name="SSTreatmentDate5" type="s:date" />
+          <s:element minOccurs="0" name="SSTreatmentDictionary1" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentDictionary2" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentDictionary3" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentDictionary4" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentDictionary5" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentDictionary6" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentDictionary7" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentDictionary8" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentDictionary9" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentFreeText101">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="10" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentFreeText102">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="10" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentFreeText103">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="10" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentFreeText104">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="10" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentFreeText105">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="10" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentFreeText401">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="40" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentFreeText402">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="40" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentFreeText403">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="40" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentFreeText404">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="40" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentFreeText405">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="40" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentFreeText801">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="80" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentFreeText802">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="80" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentFreeText803">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="80" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentFreeText804">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="80" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentFreeText805">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="80" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentGuarantor1" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentGuarantor2" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentGuarantor3" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentGuarantor4" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentGuarantor5" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentICD9Code1" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentICD9Code2" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentICD9Code3" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentICD9Code4" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentICD9Code5" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentPractitioner1" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentPractitioner2" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentPractitioner3" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentPractitioner4" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentPractitioner5" type="s:string" />
+          <s:element minOccurs="0" name="SSTreatmentScrollingFreeText1">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="32766" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentScrollingFreeText2">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="32766" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentScrollingFreeText3">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="32766" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentScrollingFreeText4">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="32766" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTreatmentScrollingFreeText5">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="32766" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSTxMultipleSelectDictionary2" type="s:string" />
+          <s:element minOccurs="0" name="SecondCoStaffMember" type="s:string" />
+          <s:element minOccurs="0" name="ServiceCode" type="s:string" />
+          <s:element minOccurs="0" name="ServiceEndTime" type="s:string" />
+          <s:element minOccurs="0" name="ServiceStartTime" type="s:string" />
+          <s:element minOccurs="0" name="ToothNumber" type="s:string" />
+          <s:element minOccurs="0" name="ToothStatusCode" type="s:string" />
+          <s:element minOccurs="0" name="ToothSurfaceCode" type="s:string" />
+          <s:element minOccurs="0" name="UnitsOfService" type="s:decimal" />
+          <s:element minOccurs="0" name="MedicalDiagnosis3" type="s:string" />
+          <s:element minOccurs="0" name="MedicalDiagnosis4" type="s:string" />
+          <s:element minOccurs="0" name="Discipline">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="20" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="ServiceStatus" type="s:string" />
+          <s:element minOccurs="0" name="InitialTxDate2300DTP03" type="s:date" />
+          <s:element minOccurs="0" name="DateOfAccident2300DTP03" type="s:date" />
+          <s:element minOccurs="0" name="FormLoc10AutoAccidentPlace" type="s:string" />
+          <s:element minOccurs="0" name="RelatedCausesInfo2300CLM11" type="s:string" />
+          <s:element minOccurs="0" name="FirstBillingDate" type="s:date" />
+          <s:element minOccurs="0" name="SSTreatmentInteger1" type="s:long" />
+          <s:element minOccurs="0" name="SSTreatmentInteger2" type="s:long" />
+          <s:element minOccurs="0" name="SSTreatmentInteger3" type="s:long" />
+          <s:element minOccurs="0" name="SSTreatmentInteger4" type="s:long" />
+          <s:element minOccurs="0" name="SSTreatmentInteger5" type="s:long" />
+          <s:element minOccurs="0" name="SSTreatmentInteger6" type="s:long" />
+          <s:element minOccurs="0" name="AdditionalServiceInformation" type="s:string" />
+          <s:element minOccurs="0" name="PsychotherapyAddOnDuration" type="s:long" />
+          <s:element minOccurs="0" name="AddOnNotes" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="FileClientChargeInputResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="FileClientChargeInputResult" type="s0:WebServiceResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="WebServiceResponse">
+        <s:sequence>
+          <s:element minOccurs="0" name="Confirmation" type="s:string" />
+          <s:element minOccurs="0" name="Message" type="s:string" />
+          <s:element minOccurs="0" name="ResponseCode" type="s:string" />
+          <s:element minOccurs="0" name="ResponseObjects" type="s0:ArrayOfResponseObjectResponseObject" />
+          <s:element minOccurs="0" name="Status" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfResponseObjectResponseObject">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ResponseObject" nillable="true" type="s0:ResponseObject" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ResponseObject">
+        <s:sequence>
+          <s:element minOccurs="0" name="Confirmation" type="s:string" />
+          <s:element minOccurs="0" name="Message" type="s:string" />
+          <s:element minOccurs="0" name="Status" type="s:long" />
+          <s:element minOccurs="0" name="ResponseCode" type="s:string" />
+          <s:element minOccurs="0" name="UniqueID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDictionaryItems">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="SystemCode" type="s:string" />
+            <s:element minOccurs="0" name="UserName" type="s:string" />
+            <s:element minOccurs="0" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDictionaryItemsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetDictionaryItemsResult" type="s0:ArrayOfDictionaryItemObjectDictionaryItemObject" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDictionaryItemObjectDictionaryItemObject">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DictionaryItemObject" nillable="true" type="s0:DictionaryItemObject" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DictionaryItemObject">
+        <s:sequence>
+          <s:element minOccurs="0" name="DictionaryCode" type="s:string" />
+          <s:element minOccurs="0" name="DictionaryFieldDescription" type="s:string" />
+          <s:element minOccurs="0" name="DictionaryUniqueId" type="s:string" />
+          <s:element minOccurs="0" name="DictionaryValue" type="s:string" />
+          <s:element minOccurs="0" name="Mesg" type="s:string" />
+          <s:element minOccurs="0" name="Status" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="FileClientChargeInputSoapIn">
+    <wsdl:part name="parameters" element="s0:FileClientChargeInput" />
+  </wsdl:message>
+  <wsdl:message name="FileClientChargeInputSoapOut">
+    <wsdl:part name="parameters" element="s0:FileClientChargeInputResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDictionaryItemsSoapIn">
+    <wsdl:part name="parameters" element="s0:GetDictionaryItems" />
+  </wsdl:message>
+  <wsdl:message name="GetDictionaryItemsSoapOut">
+    <wsdl:part name="parameters" element="s0:GetDictionaryItemsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ClientChargeInputSoap">
+    <wsdl:operation name="FileClientChargeInput">
+      <wsdl:input message="s0:FileClientChargeInputSoapIn" />
+      <wsdl:output message="s0:FileClientChargeInputSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDictionaryItems">
+      <wsdl:input message="s0:GetDictionaryItemsSoapIn" />
+      <wsdl:output message="s0:GetDictionaryItemsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ClientChargeInputSoap" type="s0:ClientChargeInputSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="FileClientChargeInput">
+      <soap:operation soapAction="http://tempuri.org/WEBSVC.ClientChargeInput.FileClientChargeInput" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDictionaryItems">
+      <soap:operation soapAction="http://tempuri.org/WEBSVC.ClientChargeInput.GetDictionaryItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ClientChargeInput">
+    <wsdl:port name="ClientChargeInputSoap" binding="s0:ClientChargeInputSoap">
+      <soap:address location="http://avtest:8972/csp/hmhcpmlive/WEBSVC.ClientChargeInput.cls" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

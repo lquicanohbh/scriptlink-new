@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="TestScriptLink2.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TestScriptLink2_DCIImport_DCIImport" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://avtest:8972/csp/hmhcpmlive/WEBSVC.DCIImport.cls</Value>
+    </Setting>
+    <Setting Name="TestScriptLink2_ClientChargeInput_ClientChargeInput" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://avtest:8972/csp/hmhcpmlive/WEBSVC.ClientChargeInput.cls</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
