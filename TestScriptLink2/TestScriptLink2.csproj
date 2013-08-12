@@ -75,12 +75,14 @@
     <Compile Include="Entities\CPTCode.cs" />
     <Compile Include="Entities\FormDictionary.cs" />
     <Compile Include="Entities\EpisodeInformation.cs" />
+    <Compile Include="Entities\Problem.cs" />
     <Compile Include="Entities\Service.cs" />
     <Compile Include="Entities\Staff.cs" />
     <Compile Include="Entities\VitalSign.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
     <Compile Include="Repositories\DictionaryRepository.cs" />
+    <Compile Include="Repositories\ProblemRepository.cs" />
     <Compile Include="Repositories\ServiceRepository.cs" />
     <Compile Include="Repositories\VitalSignRepository.cs" />
     <Compile Include="ScriptLinkClasses\FieldObject.cs" />

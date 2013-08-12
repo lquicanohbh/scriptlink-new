@@ -14,18 +14,28 @@ namespace TestScriptLink2.CPT
         public Client Client { get; set; }
         public OptionObject ReturnOptionObject { get; set; }
         public OptionObject OriginalOptionObject { get; set; }
+
+        #region FieldNumbers
         public string ChiefComplaintFieldNumber { get; set; }
+        public string MedicalConcernsFieldNumber { get; set; }
+        public string TreatmentPlanFieldNumber { get; set; }
+        public string AbnormalPsychoticThoughtsCommentsFieldNumber { get; set; }
+        public string AbnormalPsychoticThoughtsFieldNumber { get; set; }
+        public string PlanFieldNumber { get; set; }
         public string ParticipantsFieldNumber { get; set; }
-        public FormObject ReturnFormObject { get; set; }
-        public RowObject ReturnCurrentRowObject { get; set; }
-        public string ParticipantsWording { get; set; }
+        public string LocationFieldNumber { get; set; }
         public string NoteSummaryFieldNumber { get; set; }
         public string DateFieldNumber { get; set; }
         public string VitalSignsFieldNumber { get; set; }
         public string ProgramFieldNumber { get; set; }
         public string ServiceCodeFieldNumber { get; set; }
         public string ICFieldNumber { get; set; }
+        public string Problem1FieldNumber { get; set; }
+        #endregion
 
+        public FormObject ReturnFormObject { get; set; }
+        public RowObject ReturnCurrentRowObject { get; set; }
+        public string ParticipantsWording { get; set; }
 
         public MedicalNote(OptionObject optionObject)
         {
@@ -38,16 +48,23 @@ namespace TestScriptLink2.CPT
                 optionObject.SystemCode);
             this.OriginalOptionObject = optionObject;
             this.ChiefComplaintFieldNumber = "151.3";
+            this.MedicalConcernsFieldNumber = "152.37";
+            this.TreatmentPlanFieldNumber = "151.8";
+            this.AbnormalPsychoticThoughtsFieldNumber = "151.38";
+            this.AbnormalPsychoticThoughtsCommentsFieldNumber = "152.74";
+            this.PlanFieldNumber = "151.32";
             this.ParticipantsFieldNumber = "152.28";
             this.NoteSummaryFieldNumber = "152.45";
             this.DateFieldNumber = "151.28";
             this.VitalSignsFieldNumber = "152.67";
             this.ProgramFieldNumber = "151.78";
             this.ServiceCodeFieldNumber = "151.75";
+            this.LocationFieldNumber = "151.99";
             this.ICFieldNumber = "151.82";
             this.ReturnFormObject = new FormObject("188");
             this.ReturnCurrentRowObject = new RowObject("0", "188||1", "EDIT");
             this.ParticipantsWording = "Present in this session";
+            this.Problem1FieldNumber = "152.7";
         }
         private string FormatVitalSigns(List<VitalSign> VitalSigns)
         {
@@ -106,7 +123,7 @@ namespace TestScriptLink2.CPT
             if (currentChiefComplaintValue != null && String.IsNullOrEmpty(currentChiefComplaintValue.FieldValue))
             {
                 var Client = ClientRepository.GetClientById(this.OriginalOptionObject.EntityID);
-                var DefaultText = String.Format("Patient, {0}, a {1} year old {2} {3} came in for consultation on {4}.",
+                var DefaultText = String.Format("Patient, {0}, a {1} year old {2} {3} came in for follow-up on {4}.",
                     Client.Name,
                     Client.Age,
                     Client.GenderValue,
@@ -128,12 +145,29 @@ namespace TestScriptLink2.CPT
             else
                 UpdateReturnOptionObject(this.ChiefComplaintFieldNumber, GetOriginalTextInChiefComplaint(ChiefComplaintField.FieldValue));
         }
+        public void DefaultMostRecentProblem()
+        {
+            var currentProblemValue = this.OriginalOptionObject.Forms.First().CurrentRow.Fields.FirstOrDefault(f => f.FieldNumber.Equals(this.Problem1FieldNumber));
+            if (currentProblemValue != null && String.IsNullOrEmpty(currentProblemValue.FieldValue))
+            {
+                var problems = ProblemRepository.GetMostRecentProblems(
+                    this.OriginalOptionObject.EntityID,
+                    1);
+                var problem = problems.FirstOrDefault();
+                var problemDescription = problem == null ? String.Empty : String.Format("({0}) {1}", problem.ProblemCode, problem.ProblemDescription);
+                UpdateReturnOptionObject(this.Problem1FieldNumber, problemDescription);
+            }
+        }
         public void DefaultCurrentProgram()
         {
-            var client = ClientRepository.GetClientByIdWithEpisode(
-                this.OriginalOptionObject.EntityID,
-                this.OriginalOptionObject.EpisodeNumber);
-            UpdateReturnOptionObject(this.ProgramFieldNumber, client.EpisodeInformation.ProgramCode);
+            var currentProgramValue = this.OriginalOptionObject.Forms.First().CurrentRow.Fields.FirstOrDefault(f => f.FieldNumber.Equals(this.ProgramFieldNumber));
+            if (currentProgramValue != null && String.IsNullOrEmpty(currentProgramValue.FieldValue))
+            {
+                var client = ClientRepository.GetClientByIdWithEpisode(
+                    this.OriginalOptionObject.EntityID,
+                    this.OriginalOptionObject.EpisodeNumber);
+                UpdateReturnOptionObject(this.ProgramFieldNumber, client.EpisodeInformation.ProgramCode);
+            }
         }
         private void UpdateReturnOptionObject(string FieldNumber, string FieldValue)
         {
@@ -213,10 +247,10 @@ namespace TestScriptLink2.CPT
             var dp = new StringBuilder();
             var hpiLocation = new StringBuilder();
             var mentalStatus = new Dictionary<string, StringBuilder>();
-            sb.AppendFormat("Chief Complaint: {0}\n", GetFieldValue("151.3"));//chiefcomplaint
+            sb.AppendFormat("Chief Complaint: {0}\n", GetFieldValue(this.ChiefComplaintFieldNumber));//chiefcomplaint
             foreach (var dictionary in list)
             {
-                if (!dictionary.Value.Equals("Not Reviewed"))
+                if (!dictionary.Value.Equals("Not Reviewed") && !dictionary.Value.Equals("N/A"))
                 {
                     if (GetSectionList("Presenting Problems").Contains(dictionary.FieldNumber))
                     {
@@ -228,7 +262,7 @@ namespace TestScriptLink2.CPT
                     {
                         if (hpi.Length == 0)
                             hpi.AppendFormat("History of Present Illness:\n");
-                        if (dictionary.FieldNumber == "151.99")
+                        if (dictionary.FieldNumber == this.LocationFieldNumber)
                         {
                             if (hpiLocation.Length == 0)
                                 hpiLocation.AppendFormat("Located on the");
@@ -270,23 +304,32 @@ namespace TestScriptLink2.CPT
             if (pp.Length != 0)
                 sb.AppendFormat("{0}\n", pp.ToString());
             if (hpiLocation.Length != 0)
-                hpi.Append(hpiLocation.Remove(hpiLocation.Length - 1, 1).Append(". ").Append(GetHPIComments("151.99")));
+                hpi.Append(hpiLocation.Remove(hpiLocation.Length - 1, 1).Append(". ").Append(GetHPIComments(this.LocationFieldNumber)));
             if (hpi.Length != 0)
                 sb.AppendFormat("{0}\n", hpi.ToString());
             if (ros.Length != 0)
-                sb.AppendFormat("{0}\n", ros.Append(GetFieldValue("152.37")));
+                sb.AppendFormat("{0}\n", ros.Append(GetFieldValue(this.MedicalConcernsFieldNumber)));
             if (vs.Length != 0)
                 sb.AppendFormat("{0}\n", vs.ToString());
+            var medicalConcern = GetFieldValue(this.MedicalConcernsFieldNumber);
+            if (!String.IsNullOrEmpty(medicalConcern))
+                sb.AppendFormat("Medical Concerns: {0}\n", medicalConcern);
+            var treatmentPlan = GetFieldValue(this.TreatmentPlanFieldNumber);
+            if (!String.IsNullOrEmpty(treatmentPlan))
+                sb.AppendFormat("Treatment Plan: {0}\n", treatmentPlan);
             if (mentalStatus.Any())
             {
                 ms.AppendFormat("Mental Status Examination:\n");
                 foreach (var temp in mentalStatus)
                 {
                     ms.AppendFormat("{0}. ", temp.Value.ToString());
+                    if (temp.Key.Equals(this.AbnormalPsychoticThoughtsFieldNumber))
+                        ms.AppendFormat("Comments: {0}", GetFieldValue(this.AbnormalPsychoticThoughtsCommentsFieldNumber));
                 }
             }
             if (ms.Length != 0)
                 sb.AppendFormat("{0}\n\n", ms.ToString());
+            sb.AppendFormat("Plan: {0}\n", GetFieldValue(this.PlanFieldNumber));
             if (dp.Length != 0)
                 sb.AppendFormat("{0}\n", dp.ToString());
             if (ic.Length != 0)
@@ -799,5 +842,7 @@ namespace TestScriptLink2.CPT
                 }
             });
         }
+
+
     }
 }

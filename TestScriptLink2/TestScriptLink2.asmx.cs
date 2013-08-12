@@ -72,6 +72,7 @@ namespace TestScriptLink2
                 case "MedicalServicesProgressNoteLoadCC":
                     medicalNote.CreateChiefComplaint();
                     medicalNote.DefaultCurrentProgram();
+                    medicalNote.DefaultMostRecentProblem();
                     returnOptionObject = medicalNote.ReturnOptionObject;
                     break;
                 case "UpdateMedicalServicesProgressNoteCC":
