@@ -19,6 +19,7 @@ namespace TestScriptLink2.Repositories
                                 "pr.problem_description as ProblemDescription " +
                                 "FROM CWSSYSTEM.cw_problem_list pr " +
                                 "WHERE pr.PATID=? " +
+                                "AND pr.status_code = 'A' "+
                                 "ORDER BY date_identified DESC, PLuniqueid DESC ";
             #endregion
             try
