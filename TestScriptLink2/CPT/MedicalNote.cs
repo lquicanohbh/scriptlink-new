@@ -29,6 +29,7 @@ namespace TestScriptLink2.CPT
         public string ServiceCodeFieldNumber { get; set; }
         public string ICFieldNumber { get; set; }
         public string Problem1FieldNumber { get; set; }
+        public string MGAFFieldNumber { get; set; }
         #endregion
 
         public FormObject ReturnFormObject { get; set; }
@@ -57,6 +58,7 @@ namespace TestScriptLink2.CPT
             this.ServiceCodeFieldNumber = "151.75";
             this.LocationFieldNumber = "151.99";
             this.ICFieldNumber = "151.82";
+            this.MGAFFieldNumber = "152.85";
             this.ReturnFormObject = new FormObject("188");
             this.ReturnCurrentRowObject = new RowObject("0", "188||1", "EDIT");
             this.ParticipantsWording = "Present in this session";
@@ -163,6 +165,17 @@ namespace TestScriptLink2.CPT
                     this.OriginalOptionObject.EntityID,
                     this.OriginalOptionObject.EpisodeNumber);
                 UpdateReturnOptionObject(this.ProgramFieldNumber, client.EpisodeInformation.ProgramCode);
+            }
+        }
+        public void DefaultMGAF()
+        {
+            var currentMGAF = this.OriginalOptionObject.Forms.First().CurrentRow.Fields.FirstOrDefault(f => f.FieldNumber.Equals(this.MGAFFieldNumber));
+            if (currentMGAF != null & String.IsNullOrEmpty(currentMGAF.FieldValue))
+            {
+                var note = ProgressNoteRepository.GetLastMGAF(
+                    this.OriginalOptionObject.EntityID,
+                    this.OriginalOptionObject.EpisodeNumber);
+                UpdateReturnOptionObject(this.MGAFFieldNumber, note.MGAF);
             }
         }
         private void UpdateReturnOptionObject(string FieldNumber, string FieldValue)
@@ -896,5 +909,7 @@ namespace TestScriptLink2.CPT
         }
 
 
+
+        
     }
 }

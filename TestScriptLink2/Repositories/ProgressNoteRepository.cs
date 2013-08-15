@@ -4,15 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Configuration;
 using System.Data.Odbc;
+using TestScriptLink2.Entities;
 
 namespace TestScriptLink2.Repositories
 {
     public class ProgressNoteRepository
     {
-        public static string GetLastMGAF(string Patid, string Episode)
+        public static ProgressNote GetLastMGAF(string Patid, double Episode)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["AvatarDBCWS"].ConnectionString;
-            string MGAF = String.Empty;
+            var ProgressNote = new ProgressNote();
             #region commandText
             var commandText = "SELECT TOP(1) all_notes.MGAF " +
                                 "FROM " +
@@ -49,12 +50,14 @@ namespace TestScriptLink2.Repositories
                     using (var dbcommand = new OdbcCommand(commandText, connection))
                     {
                         dbcommand.Parameters.Add(new OdbcParameter("PATID", Patid));
-                        dbcommand.Parameters.Add(new OdbcParameter("EPISODE_NUMBER", Episode);
+                        dbcommand.Parameters.Add(new OdbcParameter("EPISODE_NUMBER", Episode.ToString()));
+                        dbcommand.Parameters.Add(new OdbcParameter("PATID", Patid));
+                        dbcommand.Parameters.Add(new OdbcParameter("EPISODE_NUMBER", Episode.ToString()));
                         using(var reader = dbcommand.ExecuteReader())
                         {
                             if(reader.Read())
                             {
-                                MGAF = reader["MGAF"].ToString();
+                                ProgressNote.MGAF = reader["MGAF"].ToString();
                             }
                         }
                     }
@@ -64,7 +67,7 @@ namespace TestScriptLink2.Repositories
             catch(Exception ex)
             {
             }
-            return MGAF;
+            return ProgressNote;
         }
     }
 }
