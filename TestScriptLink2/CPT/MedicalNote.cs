@@ -19,8 +19,6 @@ namespace TestScriptLink2.CPT
         public string ChiefComplaintFieldNumber { get; set; }
         public string MedicalConcernsFieldNumber { get; set; }
         public string TreatmentPlanFieldNumber { get; set; }
-        public string AbnormalPsychoticThoughtsCommentsFieldNumber { get; set; }
-        public string AbnormalPsychoticThoughtsFieldNumber { get; set; }
         public string PlanFieldNumber { get; set; }
         public string ParticipantsFieldNumber { get; set; }
         public string LocationFieldNumber { get; set; }
@@ -50,8 +48,6 @@ namespace TestScriptLink2.CPT
             this.ChiefComplaintFieldNumber = "151.3";
             this.MedicalConcernsFieldNumber = "152.37";
             this.TreatmentPlanFieldNumber = "151.8";
-            this.AbnormalPsychoticThoughtsFieldNumber = "151.38";
-            this.AbnormalPsychoticThoughtsCommentsFieldNumber = "152.74";
             this.PlanFieldNumber = "151.32";
             this.ParticipantsFieldNumber = "152.28";
             this.NoteSummaryFieldNumber = "152.45";
@@ -242,6 +238,7 @@ namespace TestScriptLink2.CPT
             var pp = new StringBuilder();
             var ros = new StringBuilder();
             var ms = new StringBuilder();
+            var mspsych = new StringBuilder();
             var vs = new StringBuilder();
             var ic = new StringBuilder();
             var dp = new StringBuilder();
@@ -287,6 +284,13 @@ namespace TestScriptLink2.CPT
                     {
                         UpdateMentalStatusSummary(mentalStatus, dictionary);
                     }
+                    else if (GetSectionList("Mental Status Psychotic Thoughts").Contains(dictionary.FieldNumber))
+                    {
+                        if (dictionary.Value.Equals("Denies"))
+                            mspsych.AppendFormat("{0} {1}. ", dictionary.Value, dictionary.FieldDescription);
+                        else
+                            mspsych.AppendFormat("Admits {0}, {1}. ", dictionary.FieldDescription, GetPsychComments(dictionary.FieldNumber));
+                    }
                     else if (GetSectionList("Interactive Complexity").Contains(dictionary.FieldNumber))
                     {
                         if (ic.Length == 0)
@@ -317,15 +321,15 @@ namespace TestScriptLink2.CPT
             var treatmentPlan = GetFieldValue(this.TreatmentPlanFieldNumber);
             if (!String.IsNullOrEmpty(treatmentPlan))
                 sb.AppendFormat("Treatment Plan: {0}\n", treatmentPlan);
-            if (mentalStatus.Any())
+            if (mentalStatus.Any() || mspsych.Length != 0)
             {
                 ms.AppendFormat("Mental Status Examination:\n");
                 foreach (var temp in mentalStatus)
                 {
                     ms.AppendFormat("{0}. ", temp.Value.ToString());
-                    if (temp.Key.Equals(this.AbnormalPsychoticThoughtsFieldNumber))
-                        ms.AppendFormat("Comments: {0}", GetFieldValue(this.AbnormalPsychoticThoughtsCommentsFieldNumber));
                 }
+                if (mspsych.Length != 0)
+                    ms.Append(mspsych.ToString());
             }
             if (ms.Length != 0)
                 sb.AppendFormat("{0}\n\n", ms.ToString());
@@ -408,6 +412,33 @@ namespace TestScriptLink2.CPT
                 return String.Empty;
             }
         }
+        private string GetPsychComments(string fieldNumber)
+        {
+            if (fieldNumber == "152.75")
+            {
+                return GetFieldValue("152.8").Replace("\n","");
+            }
+            else if (fieldNumber == "152.76")
+            {
+                return GetFieldValue("152.81").Replace("\n", "");
+            }
+            else if (fieldNumber == "152.77")
+            {
+                return GetFieldValue("152.82").Replace("\n", "");
+            }
+            else if (fieldNumber == "152.78")
+            {
+                return GetFieldValue("152.83").Replace("\n", "");
+            }
+            else if (fieldNumber == "152.79")
+            {
+                return GetFieldValue("152.84").Replace("\n", "");
+            }
+            else
+            {
+                return String.Empty;
+            }
+        }
         private string GetProblemTypeForProblem(string fieldNumber)
         {
             if (fieldNumber == "152.63")
@@ -447,7 +478,7 @@ namespace TestScriptLink2.CPT
                     temp4.ForEach(x => list.Add(x));
                     break;
                 case "Mental Status Examination":
-                    var temp5 = new List<string> { "151.33", "151.36", "151.37", "151.38", "151.4", "151.41", "151.42", "151.43", "151.44", "151.45", "151.56", "152.68" };
+                    var temp5 = new List<string> { "151.33", "151.36", "151.37", "151.4", "151.41", "151.42", "151.43", "151.44", "151.45", "151.56", "152.68" };
                     temp5.ForEach(x => list.Add(x));
                     break;
                 case "Vital Signs":
@@ -461,6 +492,10 @@ namespace TestScriptLink2.CPT
                 case "Data Points":
                     var temp8 = new List<string> { "152.53", "152.54", "152.55", "152.56", "152.57", "152.58", "152.59" };
                     temp8.ForEach(x => list.Add(x));
+                    break;
+                case "Mental Status Psychotic Thoughts":
+                    var temp9 = new List<string> { "152.75", "152.76", "152.77", "152.78", "152.79" };
+                    temp9.ForEach(x => list.Add(x));
                     break;
                 default:
                     list = null;
@@ -512,7 +547,6 @@ namespace TestScriptLink2.CPT
             dictionaryList.Add(new FormDictionary { FieldNumber = "151.33" });
             dictionaryList.Add(new FormDictionary { FieldNumber = "151.36" });
             dictionaryList.Add(new FormDictionary { FieldNumber = "151.37" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "151.38" });
             dictionaryList.Add(new FormDictionary { FieldNumber = "151.4" });
             dictionaryList.Add(new FormDictionary { FieldNumber = "151.41" });
             dictionaryList.Add(new FormDictionary { FieldNumber = "151.42" });
@@ -521,6 +555,14 @@ namespace TestScriptLink2.CPT
             dictionaryList.Add(new FormDictionary { FieldNumber = "151.45" });
             dictionaryList.Add(new FormDictionary { FieldNumber = "151.56" });
             dictionaryList.Add(new FormDictionary { FieldNumber = "152.68" });
+            #endregion
+
+            #region Mental Status Examination Psychotic Thoughts
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.75" });//auditory
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.76" });//visual
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.77" });//suicidal
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.78" });//homicidal
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.79" });//delusions
             #endregion
 
             #region Vital Signs
@@ -591,9 +633,15 @@ namespace TestScriptLink2.CPT
             #endregion
 
             #region Examination
-            var PsyExamFields = new List<string> {"151.33","151.36","151.37","151.38","151.4",
+            var PsyExamFields = new List<string> {"151.33","151.36","151.37","151.4",
                 "151.41","151.42","151.43","151.44","151.45",
                 "151.56"};
+            var MuscoloskeletalFields = new List<string> { "" };
+            var ConstitutionalFields = new List<string> { "" };
+            #endregion
+
+            #region Examination Psychotic
+            var ExamPsychFields = new List<string> { "152.75", "152.76", "152.77", "152.78", "152.79" };
             #endregion
 
             #region MDM
@@ -612,6 +660,9 @@ namespace TestScriptLink2.CPT
             var ROSValue = CountFields(list, ROSFields);
 
             var PsyExamValue = CountFields(list, PsyExamFields);
+            var ExamPsychValue = CountFields(list, ExamPsychFields);
+            var MusculoValue = CountFields(list, MuscoloskeletalFields);
+            var ConstitutionalValue = CountFields(list, ConstitutionalFields);
 
             var ProblemPointsValue = SumFieldValue(fields, ProblemPointsFields);
             var DataPointsValue = SumDictionaryCode(list, DataPointsFields);
@@ -619,7 +670,8 @@ namespace TestScriptLink2.CPT
             var ICValue = CountFields(fields, ICFields);
 
             HistoryType = CalculateHistoryType(HPIValue, PFSHValue, ROSValue);
-            ExaminationType = CalculateExaminationType(PsyExamValue, 10, 10);
+            ExaminationType = ExamPsychValue > 0 ? CalculateExaminationType((PsyExamValue + 1), MusculoValue, ConstitutionalValue)
+                : CalculateExaminationType(PsyExamValue, MusculoValue, ConstitutionalValue);
             MDMType = CalculateMDMType(ProblemPointsValue, DataPointsValue, 0);
 
             int min = Helper.Min(HistoryType, ExaminationType, MDMType);
