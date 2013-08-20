@@ -46,23 +46,23 @@ namespace TestScriptLink2.CPT
                 optionObject.OptionUserId,
                 optionObject.SystemCode);
             this.OriginalOptionObject = optionObject;
-            this.ChiefComplaintFieldNumber = "151.97";
-            this.MedicalConcernsFieldNumber = "152.8";
-            this.TreatmentPlanFieldNumber = "152.35";
-            this.PlanFieldNumber = "151.99";
-            this.ParticipantsFieldNumber = "152.71";
-            this.NoteSummaryFieldNumber = "152.88";
-            this.DateFieldNumber = "151.95";
-            this.VitalSignsFieldNumber = "153.05";
-            this.ProgramFieldNumber = "152.33";
-            this.ServiceCodeFieldNumber = "152.3";
-            this.LocationFieldNumber = "152.51";
-            this.ICFieldNumber = "152.37";
-            this.MGAFFieldNumber = "153.23";
+            this.ChiefComplaintFieldNumber = "151.3";
+            this.MedicalConcernsFieldNumber = "152.37";
+            this.TreatmentPlanFieldNumber = "151.8";
+            this.PlanFieldNumber = "151.32";
+            this.ParticipantsFieldNumber = "152.28";
+            this.NoteSummaryFieldNumber = "152.45";
+            this.DateFieldNumber = "151.28";
+            this.VitalSignsFieldNumber = "152.67";
+            this.ProgramFieldNumber = "151.78";
+            this.ServiceCodeFieldNumber = "151.75";
+            this.LocationFieldNumber = "151.99";
+            this.ICFieldNumber = "151.82";
+            this.MGAFFieldNumber = "152.85";
             this.ReturnFormObject = new FormObject("188");
             this.ReturnCurrentRowObject = new RowObject("0", "188||1", "EDIT");
             this.ParticipantsWording = "Present in this session";
-            this.Problem1FieldNumber = "153.08";
+            this.Problem1FieldNumber = "152.7";
         }
         private string FormatVitalSigns(List<VitalSign> VitalSigns)
         {
@@ -369,27 +369,27 @@ namespace TestScriptLink2.CPT
         }
         private string GetHPIString(FormDictionary dictionary)
         {
-            if (dictionary.FieldNumber == "152.86")//severity
+            if (dictionary.FieldNumber == "152.43")//severity
             {
                 return String.Format("{0} {1}. ", dictionary.Value, dictionary.FieldDescription);
             }
-            else if (dictionary.FieldNumber == "152.87")//timing
+            else if (dictionary.FieldNumber == "152.44")//timing
             {
                 return String.Format("{0} {1}. ", dictionary.Value, dictionary.FieldDescription);
             }
-            else if (dictionary.FieldNumber == "152.84")//context
+            else if (dictionary.FieldNumber == "152.41")//context
             {
-                return GetHPIComments("152.84").Replace("\n", " ");
+                return GetHPIComments("152.41").Replace("\n", " ");
             }
-            else if (dictionary.FieldNumber == "152.85")//modifying factors
+            else if (dictionary.FieldNumber == "152.42")//modifying factors
             {
-                return GetHPIComments("152.85").Replace("\n", " ");
+                return GetHPIComments("152.42").Replace("\n", " ");
             }
             else if (dictionary.FieldNumber == "152.4")//associated signs and symptoms
             {
-                return GetHPIComments("152.83").Replace("\n", " ");
+                return GetHPIComments("152.4").Replace("\n", " ");
             }
-            else if (dictionary.FieldNumber == "152.43")//duration
+            else if (dictionary.FieldNumber == "151.89")//duration
             {
                 return String.Format("Lasting approximately {0} {1}. ", GetHPIComments("151.89"), dictionary.Value);
             }
@@ -400,25 +400,25 @@ namespace TestScriptLink2.CPT
         }
         private string GetHPIComments(string fieldNumber)
         {
-            if (fieldNumber == "152.51")//location
+            if (fieldNumber == "151.99")//location
             {
-                return GetFieldValue("152.52");
+                return GetFieldValue("152");
             }
-            else if (fieldNumber == "152.84")//context
+            else if (fieldNumber == "152.41")//context
             {
-                return GetFieldValue("151.49");
+                return GetFieldValue("151.97");
             }
-            else if (fieldNumber == "152.85")//modifying factors
+            else if (fieldNumber == "152.42")//modifying factors
             {
-                return GetFieldValue("152.54");
+                return GetFieldValue("152.02");
             }
-            else if (fieldNumber == "152.83")//associated signs and symptoms
+            else if (fieldNumber == "152.4")//associated signs and symptoms
             {
-                return GetFieldValue("152.55");
+                return GetFieldValue("152.04");
             }
-            else if (fieldNumber == "151.43")//duration
+            else if (fieldNumber == "151.89")//duration
             {
-                return GetFieldValue("151.42");
+                return GetFieldValue("151.91");
             }
             else
             {
@@ -427,25 +427,25 @@ namespace TestScriptLink2.CPT
         }
         private string GetPsychComments(string fieldNumber)
         {
-            if (fieldNumber == "153.13")
+            if (fieldNumber == "152.75")
             {
-                return GetFieldValue("153.18").Replace("\n", "");
+                return GetFieldValue("152.8").Replace("\n", "");
             }
-            else if (fieldNumber == "153.14")
+            else if (fieldNumber == "152.76")
             {
-                return GetFieldValue("153.19").Replace("\n", "");
+                return GetFieldValue("152.81").Replace("\n", "");
             }
-            else if (fieldNumber == "153.15")
+            else if (fieldNumber == "152.77")
             {
-                return GetFieldValue("153.2").Replace("\n", "");
+                return GetFieldValue("152.82").Replace("\n", "");
             }
-            else if (fieldNumber == "153.16")
+            else if (fieldNumber == "152.78")
             {
-                return GetFieldValue("153.21").Replace("\n", "");
+                return GetFieldValue("152.83").Replace("\n", "");
             }
-            else if (fieldNumber == "153.17")
+            else if (fieldNumber == "152.79")
             {
-                return GetFieldValue("153.22").Replace("\n", "");
+                return GetFieldValue("152.84").Replace("\n", "");
             }
             else
             {
@@ -454,14 +454,14 @@ namespace TestScriptLink2.CPT
         }
         private string GetProblemTypeForProblem(string fieldNumber)
         {
-            if (fieldNumber == "153.01")
-                return GetFieldValue("153.08").Replace("\n", String.Empty);
-            else if (fieldNumber == "153.02")
-                return GetFieldValue("153.09").Replace("\n", String.Empty);
-            else if (fieldNumber == "153.03")
-                return GetFieldValue("153.1").Replace("\n", String.Empty);
-            else if (fieldNumber == "153.04")
-                return GetFieldValue("153.11").Replace("\n", String.Empty);
+            if (fieldNumber == "152.63")
+                return GetFieldValue("152.7").Replace("\n", String.Empty);
+            else if (fieldNumber == "152.64")
+                return GetFieldValue("152.71").Replace("\n", String.Empty);
+            else if (fieldNumber == "152.65")
+                return GetFieldValue("152.72").Replace("\n", String.Empty);
+            else if (fieldNumber == "152.66")
+                return GetFieldValue("152.73").Replace("\n", String.Empty);
             else
                 return String.Empty;
         }
@@ -475,39 +475,39 @@ namespace TestScriptLink2.CPT
             switch (section)
             {
                 case "Participants":
-                    var temp1 = new List<string> { "152.71" };
+                    var temp1 = new List<string> { "152.28" };
                     temp1.ForEach(x => list.Add(x));
                     break;
                 case "Presenting Problems":
-                    var temp2 = new List<string> { "153.01", "153.02", "153.03", "153.04" };
+                    var temp2 = new List<string> { "152.63", "152.64", "152.65", "152.66" };
                     temp2.ForEach(x => list.Add(x));
                     break;
                 case "History of Present Illness":
-                    var temp3 = new List<string> { "152.86", "152.87", "152.51", "152.84", "152.85", "152.83", "152.43" };
+                    var temp3 = new List<string> { "151.89", "151.99", "152.4", "152.41", "152.42", "152.43", "152.44" };
                     temp3.ForEach(x => list.Add(x));
                     break;
                 case "Review of Systems":
-                    var temp4 = new List<string> { "152.72", "152.66", "152.68", "152.67", "152.69", "152.7", "152.73", "152.74", "152.75", "152.76", "152.77", "152.78", "152.79" };
+                    var temp4 = new List<string> { "152.2", "152.21", "152.22", "152.23", "152.24", "152.29", "152.3", "152.31", "152.32", "152.33", "152.34", "152.35", "152.36" };
                     temp4.ForEach(x => list.Add(x));
                     break;
                 case "Mental Status Examination":
-                    var temp5 = new List<string> { "153.06", "152", "152.02", "152.03", "152.12", "152.06", "152.07", "152.08", "152.09", "152.1", "152.11" };
+                    var temp5 = new List<string> { "151.33", "151.36", "151.37", "151.4", "151.41", "151.42", "151.43", "151.44", "151.45", "151.56", "152.68" };
                     temp5.ForEach(x => list.Add(x));
                     break;
                 case "Vital Signs":
-                    var temp6 = new List<string> { "153.07" };
+                    var temp6 = new List<string> { "152.69" };
                     temp6.ForEach(x => list.Add(x));
                     break;
                 case "Interactive Complexity":
-                    var temp7 = new List<string> { "152.25", "152.26", "152.29", "152.28", "152.27" };
+                    var temp7 = new List<string> { "151.7", "151.71", "151.72", "151.73", "151.74" };
                     temp7.ForEach(x => list.Add(x));
                     break;
                 case "Data Points":
-                    var temp8 = new List<string> { "152.91", "152.92", "152.93", "152.94", "152.97", "152.95", "152.96" };
+                    var temp8 = new List<string> { "152.53", "152.54", "152.55", "152.56", "152.57", "152.58", "152.59" };
                     temp8.ForEach(x => list.Add(x));
                     break;
                 case "Mental Status Psychotic Thoughts":
-                    var temp9 = new List<string> { "153.13", "153.14", "153.15", "153.16", "153.17" };
+                    var temp9 = new List<string> { "152.75", "152.76", "152.77", "152.78", "152.79" };
                     temp9.ForEach(x => list.Add(x));
                     break;
                 default:
@@ -520,84 +520,84 @@ namespace TestScriptLink2.CPT
         {
             var dictionaryList = new List<FormDictionary>();
             #region Participants
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.71" });//participants
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.28" });//participants
             #endregion
 
             #region Presenting Problems
-            dictionaryList.Add(new FormDictionary { FieldNumber = "153.01" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "153.02" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "153.03" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "153.04" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.63" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.64" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.65" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.66" });
             #endregion
 
             #region History of Present Illness
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.86" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.87" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.51" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.84" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.85" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.83" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.89" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.99" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.4" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.41" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.42" });
             dictionaryList.Add(new FormDictionary { FieldNumber = "152.43" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.44" });
             #endregion
 
             #region Review of Systems
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.72" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.66" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.68" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.67" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.69" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.7" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.73" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.74" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.75" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.76" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.77" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.78" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.79" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.2" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.21" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.22" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.23" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.24" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.29" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.3" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.31" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.32" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.33" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.34" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.35" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.36" });
             #endregion
 
             #region Mental Status Examination
-            dictionaryList.Add(new FormDictionary { FieldNumber = "153.06" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.02" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.03" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.12" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.06" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.07" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.08" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.09" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.1" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.11" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.33" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.36" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.37" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.4" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.41" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.42" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.43" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.44" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.45" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.56" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.68" });
             #endregion
 
             #region Mental Status Examination Psychotic Thoughts
-            dictionaryList.Add(new FormDictionary { FieldNumber = "153.13" });//auditory
-            dictionaryList.Add(new FormDictionary { FieldNumber = "153.14" });//visual
-            dictionaryList.Add(new FormDictionary { FieldNumber = "153.15" });//suicidal
-            dictionaryList.Add(new FormDictionary { FieldNumber = "153.16" });//homicidal
-            dictionaryList.Add(new FormDictionary { FieldNumber = "153.17" });//delusions
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.75" });//auditory
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.76" });//visual
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.77" });//suicidal
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.78" });//homicidal
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.79" });//delusions
             #endregion
 
             #region Vital Signs
-            dictionaryList.Add(new FormDictionary { FieldNumber = "153.05" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.69" });
             #endregion
 
             #region Interactive Complexity
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.25" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.26" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.27" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.28" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.29" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.7" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.71" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.72" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.73" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "151.74" });
             #endregion
 
             #region Data Points
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.91" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.92" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.93" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.94" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.95" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.96" });
-            dictionaryList.Add(new FormDictionary { FieldNumber = "152.97" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.53" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.54" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.55" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.56" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.57" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.58" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "152.59" });
             #endregion
             return dictionaryList;
         }
@@ -638,31 +638,33 @@ namespace TestScriptLink2.CPT
             int MDMType = 0;
 
             #region History
-            var HPIFields = new List<string> { "152.86", "152.87", "152.51", "152.84", "152.85", "152.83", "152.43" };
-            var PFSHFields = new List<string> { "152.4", "152.89", "152.9" };
-            var ROSFields = new List<string> {"152.72","152.66","152.68","152.67","152.69",
-                "152.7","152.73","152.74","152.75","152.76",
-                "152.77","152.78","152.79",};
+            var HPIFields = new List<string> { "151.91", "151.99", "152.4", "152.41", "152.42", "152.43", "152.44" };
+            var PFSHFields = new List<string> { "151.85", "152.46", "152.47" };
+            var ROSFields = new List<string> {"152.2","152.21","152.22","152.23","152.24",
+                "152.29","152.3","152.31","152.32","152.33",
+                "152.34","152.35","152.36",};
             #endregion
 
             #region Examination
-            var PsyExamFields = new List<string> { "153.06", "152", "152.02", "152.03", "152.12", "152.06", "152.07", "152.08", "152.09", "152.1", "152.11" };
-            var MuscoloskeletalFields = new List<string> { "152.74" };
-            var ConstitutionalFields = new List<string> { "153.07","153.06" };
+            var PsyExamFields = new List<string> {"151.33","151.36","151.37","151.4",
+                "151.41","151.42","151.43","151.44","151.45",
+                "151.56"};
+            var MuscoloskeletalFields = new List<string> { "" };
+            var ConstitutionalFields = new List<string> { "" };
             #endregion
 
             #region Examination Psychotic
-            var ExamPsychFields = new List<string> { "153.13", "153.14", "153.15", "153.16", "153.17" };
+            var ExamPsychFields = new List<string> { "152.75", "152.76", "152.77", "152.78", "152.79" };
             #endregion
 
             #region MDM
-            var ProblemPointsFields = new List<string> { "153.01", "153.02", "153.03", "153.04" };
-            var DataPointsFields = new List<string> { "152.91", "152.92", "152.93", "152.94", "152.97", "152.95", "152.96" };
+            var ProblemPointsFields = new List<string> { "152.63", "152.64", "152.65", "152.66" };
+            var DataPointsFields = new List<string> { "152.53", "152.54", "152.55", "152.56", "152.57", "152.58", "152.59" };
             //var TableOfRiskFields = new List<string> { "" };
             #endregion
 
             #region Interactive Complexity
-            var ICFields = new List<string> { "152.25", "152.26", "152.29", "152.28", "152.27" };
+            var ICFields = new List<string> { "151.7", "151.71", "151.72", "151.73", "151.74" };
             #endregion
 
 
@@ -692,27 +694,27 @@ namespace TestScriptLink2.CPT
             var max2 = pointsList.ElementAt(1);
 
 
-            string ServiceCode = "1103";//99211
+            string ServiceCode = "802";//99211
 
             if (max1 >= 4 && max2 >= 4)
             {
-                ServiceCode = "1107";//99215
+                ServiceCode = "806";//99215
             }
             else if (max1 >= 3 && max2 >= 3)
             {
-                ServiceCode = "1106";//99214
+                ServiceCode = "805";//99214
             }
             else if (max1 >= 2 && max2 >= 2)
             {
-                ServiceCode = "1105";//99213
+                ServiceCode = "804";//99213
             }
             else if (max1 >= 1 && max2 >= 1)
             {
-                ServiceCode = "1104";//99212
+                ServiceCode = "803";//99212
             }
             else
             {
-                ServiceCode = "1103";//99211
+                ServiceCode = "802";//99211
             }
 
             return new CPTCode(ServiceCode, ICValue > 0);
@@ -804,7 +806,7 @@ namespace TestScriptLink2.CPT
             int count = 0;
             foreach (var dictionary in tempList)
             {
-                if (!dictionary.Value.Equals("Not Reviewed") && !dictionary.Value.Equals("N/A"))
+                if (!dictionary.Value.Equals("Not Reviewed"))
                 {
                     count++;
                 }
@@ -911,3 +913,4 @@ namespace TestScriptLink2.CPT
 
     }
 }
+
