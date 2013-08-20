@@ -11,7 +11,7 @@ namespace TestScriptLink2.Entities
         public bool InteractiveComplexity { get; set; }
         public CPTCode()
         {
-            this.ServiceCode = "99211";
+            this.ServiceCode = "1103";
             this.InteractiveComplexity = false;
         }
         public CPTCode(string ServiceCode, bool InteractiveComplexity)
