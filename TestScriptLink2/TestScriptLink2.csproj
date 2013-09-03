@@ -71,6 +71,10 @@
   <ItemGroup>
     <Compile Include="AvatarSQLContext.cs" />
     <Compile Include="CPT\MedicalNote.cs" />
+    <Compile Include="DCI\ContactName.cs" />
+    <Compile Include="DCI\Option.cs" />
+    <Compile Include="DCI\OptionData.cs" />
+    <Compile Include="DCI\Record.cs" />
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\CPTCode.cs" />
     <Compile Include="Entities\FormDictionary.cs" />
@@ -87,6 +91,7 @@
     <Compile Include="Repositories\ProgressNoteRepository.cs" />
     <Compile Include="Repositories\ServiceRepository.cs" />
     <Compile Include="Repositories\VitalSignRepository.cs" />
+    <Compile Include="ROI\ContactInformation.cs" />
     <Compile Include="ScriptLinkClasses\FieldObject.cs" />
     <Compile Include="Entities\ClientForm.cs" />
     <Compile Include="ScriptLinkClasses\FormObject.cs" />
