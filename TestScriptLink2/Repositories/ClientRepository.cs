@@ -105,8 +105,8 @@ namespace TestScriptLink2.Repositories
                                 client.EpisodeInformation.ProgramCode = reader["ProgramCode"].ToString();
                                 client.EpisodeInformation.ProgramValue = reader["ProgramValue"].ToString();
                                 client.EpisodeInformation.AdmitDate = reader.GetDate(reader.GetOrdinal("AdmitDate"));
-                                client.EpisodeInformation.DischargeDate = Helper.getNullableDatetime(reader, "DischargeDate");
-                                client.EpisodeInformation.LastServiceDate = Helper.getNullableDatetime(reader, "LastServiceDate");
+                                client.EpisodeInformation.DischargeDate = Helper.GetNullableDatetime(reader, "DischargeDate");
+                                client.EpisodeInformation.LastServiceDate = Helper.GetNullableDatetime(reader, "LastServiceDate");
                                 client.Id = reader["ClientId"].ToString();
                                 client.Name = reader["ClientName"].ToString();
                                 client.GenderCode = reader["GenderCode"].ToString();

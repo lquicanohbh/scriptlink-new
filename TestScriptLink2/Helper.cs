@@ -10,10 +10,14 @@ namespace TestScriptLink2
 {
     public static class Helper
     {
-        public static DateTime? getNullableDatetime(OdbcDataReader reader, string columnName)
+        public static DateTime? GetNullableDatetime(OdbcDataReader reader, string columnName)
         {
             int x = reader.GetOrdinal(columnName);
             return reader.IsDBNull(x) ? (DateTime?)null : reader.GetDateTime(x);
+        }
+        public static DateTime? ConvertStringToNullableDatetime(string DateValue)
+        {
+            return String.IsNullOrEmpty(DateValue) ? (DateTime?)null : DateTime.Parse(DateValue);
         }
         public static string FormatMultipleValueToQueryParameter(string MultipleValue)
         {
