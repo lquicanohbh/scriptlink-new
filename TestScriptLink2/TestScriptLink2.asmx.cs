@@ -45,9 +45,9 @@ namespace TestScriptLink2
                 case "EmailUMBHRequest":
                     returnOptionObject = EmailUMBHRequest(optionObject);
                     break;
-                case "AddNewClientContact":
-                    returnOptionObject = AddNewClientContact(optionObject);
-                    break;
+                //case "AddNewClientContact":
+                //    returnOptionObject = AddNewClientContact(optionObject);
+                //    break;
                 case "CreateNonClientCharge":
                     var service = new Service();
                     if (service.PopulateService(optionObject))
@@ -176,57 +176,57 @@ namespace TestScriptLink2
 
 
         }
-        private OptionObject AddNewClientContact(OptionObject optionObject)
-        {
-            var returnOptionObject = new OptionObject();
-            var Acknowledgment = new FieldObject("131.88");
-            var EntryDate = new FieldObject("131.77");
+        //private OptionObject AddNewClientContact(OptionObject optionObject)
+        //{
+        //    var returnOptionObject = new OptionObject();
+        //    var Acknowledgment = new FieldObject("131.88");
+        //    var EntryDate = new FieldObject("131.77");
 
-            foreach (var form in optionObject.Forms)
-            {
-                foreach (var field in form.CurrentRow.Fields)
-                {
-                    if (field.FieldNumber.Equals(Acknowledgment.FieldNumber))
-                        Acknowledgment.FieldValue = field.FieldValue;
-                    if (field.FieldNumber.Equals(EntryDate.FieldNumber))
-                        EntryDate.FieldValue = field.FieldValue;
-                }
-            }
-            if (Acknowledgment.FieldValue.Equals("1"))
-            {
-                List<NewClientContact> contactInformationList = NewClientContactRepository.GetContactInfo(optionObject.EntityID, optionObject.EpisodeNumber.ToString(), DateTime.Parse(EntryDate.FieldValue));//, DateTime.Now);
-                AddContact(contactInformationList);
-            }
-            returnOptionObject.EntityID = optionObject.EntityID;
-            returnOptionObject.OptionId = optionObject.OptionId;
-            returnOptionObject.Facility = optionObject.Facility;
-            returnOptionObject.SystemCode = optionObject.SystemCode;
+        //    foreach (var form in optionObject.Forms)
+        //    {
+        //        foreach (var field in form.CurrentRow.Fields)
+        //        {
+        //            if (field.FieldNumber.Equals(Acknowledgment.FieldNumber))
+        //                Acknowledgment.FieldValue = field.FieldValue;
+        //            if (field.FieldNumber.Equals(EntryDate.FieldNumber))
+        //                EntryDate.FieldValue = field.FieldValue;
+        //        }
+        //    }
+        //    if (Acknowledgment.FieldValue.Equals("1"))
+        //    {
+        //        List<NewClientContact> contactInformationList = NewClientContactRepository.GetContactInfo(optionObject.EntityID, optionObject.EpisodeNumber.ToString(), DateTime.Parse(EntryDate.FieldValue));//, DateTime.Now);
+        //        AddContact(contactInformationList);
+        //    }
+        //    returnOptionObject.EntityID = optionObject.EntityID;
+        //    returnOptionObject.OptionId = optionObject.OptionId;
+        //    returnOptionObject.Facility = optionObject.Facility;
+        //    returnOptionObject.SystemCode = optionObject.SystemCode;
 
-            return returnOptionObject;
-        }
-        private void AddContact(List<NewClientContact> contactInformationList)
-        {
-            string xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
-                                        "<option>" +
-                                        "<optionidentifier>USER34</optionidentifier>";
-            string xmlFooter = "</option>";
-            var SystemCode = ConfigurationManager.AppSettings["SystemCode"].ToString();
-            var Username = ConfigurationManager.AppSettings["Username"].ToString();
-            var Password = ConfigurationManager.AppSettings["Password"].ToString();
-            var record = "";
-            long filewarnings = 1;
-            bool filewarningsSpecified = true;
-            string resultStream = "";
-            string recordStream = "";
-            recordStream = xmlHeader;
-            foreach (var contact in contactInformationList)
-            {
-                recordStream += contact.ToString();
-            }
-            recordStream += xmlFooter;
-            recordStream = "<?xml version=1.0 encoding=UTF-8 standalone=yes?><option><optionidentifier>USER40</optionidentifier><option_data><PATID>1000092</PATID><EPISODE_NUMBER>1</EPISODE_NUMBER><SYSTEM.new_client_contact_info><Contact_Date>2013-05-07</Contact_Date><Contact_Name>TEST,TEST</Contact_Name><Contact_Type>99</Contact_Type></SYSTEM.new_client_contact_info></option_data></option>";
-            var test = new DCIImport.DCIImport();
-            var result = test.ImportRecord(SystemCode, Username, Password, record, filewarnings, filewarningsSpecified, recordStream, resultStream);
-        }
+        //    return returnOptionObject;
+        //}
+        //private void AddContact(List<NewClientContact> contactInformationList)
+        //{
+        //    string xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
+        //                                "<option>" +
+        //                                "<optionidentifier>USER34</optionidentifier>";
+        //    string xmlFooter = "</option>";
+        //    var SystemCode = ConfigurationManager.AppSettings["SystemCode"].ToString();
+        //    var Username = ConfigurationManager.AppSettings["Username"].ToString();
+        //    var Password = ConfigurationManager.AppSettings["Password"].ToString();
+        //    var record = "";
+        //    long filewarnings = 1;
+        //    bool filewarningsSpecified = true;
+        //    string resultStream = "";
+        //    string recordStream = "";
+        //    recordStream = xmlHeader;
+        //    foreach (var contact in contactInformationList)
+        //    {
+        //        recordStream += contact.ToString();
+        //    }
+        //    recordStream += xmlFooter;
+        //    recordStream = "<?xml version=1.0 encoding=UTF-8 standalone=yes?><option><optionidentifier>USER40</optionidentifier><option_data><PATID>1000092</PATID><EPISODE_NUMBER>1</EPISODE_NUMBER><SYSTEM.new_client_contact_info><Contact_Date>2013-05-07</Contact_Date><Contact_Name>TEST,TEST</Contact_Name><Contact_Type>99</Contact_Type></SYSTEM.new_client_contact_info></option_data></option>";
+        //    var test = new DCIImport.DCIImport();
+        //    var result = test.ImportRecord(SystemCode, Username, Password, record, filewarnings, filewarningsSpecified, recordStream, resultStream);
+        //}
     }
 }

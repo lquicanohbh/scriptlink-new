@@ -52,7 +52,7 @@ namespace TestScriptLink2.CPT
             this.PlanFieldNumber = "151.99";
             this.ParticipantsFieldNumber = "152.71";
             this.NoteSummaryFieldNumber = "152.88";
-            this.DateFieldNumber = "151.95";
+            this.DateFieldNumber = "151.95";    
             this.VitalSignsFieldNumber = "153.05";
             this.ProgramFieldNumber = "152.33";
             this.ServiceCodeFieldNumber = "152.3";
@@ -579,7 +579,7 @@ namespace TestScriptLink2.CPT
             #endregion
 
             #region Vital Signs
-            dictionaryList.Add(new FormDictionary { FieldNumber = "153.05" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "153.07" });
             #endregion
 
             #region Interactive Complexity
