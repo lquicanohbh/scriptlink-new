@@ -92,6 +92,8 @@ namespace TestScriptLink2
                     medicalNote.GetServiceCode();
                     returnOptionObject = medicalNote.ReturnOptionObject;
                     break;
+                case "CreateClientContact":
+                    break;
                 default:
                     break;
             }

@@ -86,6 +86,7 @@
     <Compile Include="Entities\Staff.cs" />
     <Compile Include="Entities\VitalSign.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="Repositories\ClientContactRepository.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
     <Compile Include="Repositories\DictionaryRepository.cs" />
     <Compile Include="Repositories\ProblemRepository.cs" />
