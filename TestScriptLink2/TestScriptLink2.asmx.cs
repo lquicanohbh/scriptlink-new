@@ -88,6 +88,10 @@ namespace TestScriptLink2
                     medicalNote.DefaultVitalSigns();
                     returnOptionObject = medicalNote.ReturnOptionObject;
                     break;
+                case "CopyProblem":
+                    medicalNote.CopyProblem();
+                    returnOptionObject = medicalNote.ReturnOptionObject;
+                    break;
                 case "CalculateServiceCode":
                     medicalNote.GetServiceCode();
                     returnOptionObject = medicalNote.ReturnOptionObject;

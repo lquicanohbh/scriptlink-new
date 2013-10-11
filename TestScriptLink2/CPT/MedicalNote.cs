@@ -30,6 +30,8 @@ namespace TestScriptLink2.CPT
         public string ICFieldNumber { get; set; }
         public string Problem1FieldNumber { get; set; }
         public string MGAFFieldNumber { get; set; }
+        public string CurrentProblems { get; set; }
+        public List<string> NoteProblems { get; set; }
         #endregion
 
         public FormObject ReturnFormObject { get; set; }
@@ -63,6 +65,8 @@ namespace TestScriptLink2.CPT
             this.ReturnCurrentRowObject = new RowObject("0", "188||1", "EDIT");
             this.ParticipantsWording = "Present in this session";
             this.Problem1FieldNumber = "153.08";
+            this.CurrentProblems = "153.51";
+            this.NoteProblems = new List<string>() { "153.08", "153.09", "153.1", "153.11" };
         }
         private string FormatVitalSigns(List<VitalSign> VitalSigns)
         {
@@ -115,6 +119,32 @@ namespace TestScriptLink2.CPT
                         FieldValue = FieldValue
                     });
         }
+        public void CopyProblem()
+        {
+            var currentProblems = this.OriginalOptionObject.Forms.First().CurrentRow.Fields.FirstOrDefault(f => f.FieldNumber.Equals(this.CurrentProblems)).FieldValue.Split('&').ToList();
+            var noteProblems = new List<FieldObject>();
+            foreach (var field in this.OriginalOptionObject.Forms.First().CurrentRow.Fields)
+            {
+                if (this.NoteProblems.Contains(field.FieldNumber))
+                    noteProblems.Add(field);
+            }
+            foreach (var fieldValue in currentProblems)
+            {
+                if (!noteProblems.Select(f => f.FieldValue).Contains(fieldValue))
+                {
+                    foreach (var tempField in noteProblems)
+                    {
+                        if (String.IsNullOrEmpty(tempField.FieldValue))
+                        {
+                            UpdateReturnOptionObject(tempField.FieldNumber, fieldValue);
+                            tempField.FieldValue = "X";
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
         public void CreateChiefComplaint()
         {
             var currentChiefComplaintValue = this.OriginalOptionObject.Forms.First().CurrentRow.Fields.FirstOrDefault(f => f.FieldNumber.Equals(this.ChiefComplaintFieldNumber));
