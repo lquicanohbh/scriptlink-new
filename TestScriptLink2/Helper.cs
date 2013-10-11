@@ -5,11 +5,22 @@ using System.Web;
 using System.Net.Mail;
 using System.Configuration;
 using System.Data.Odbc;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace TestScriptLink2
 {
     public static class Helper
     {
+        public static string SerializeToString(object obj)
+        {
+            XmlSerializer serializer = new XmlSerializer(obj.GetType());
+            using (StringWriter writer = new StringWriter())
+            {
+                serializer.Serialize(writer, obj);
+                return writer.ToString();
+            }
+        }
         public static DateTime? GetNullableDatetime(OdbcDataReader reader, string columnName)
         {
             int x = reader.GetOrdinal(columnName);

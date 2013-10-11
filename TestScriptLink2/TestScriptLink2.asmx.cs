@@ -93,6 +93,9 @@ namespace TestScriptLink2
                     returnOptionObject = medicalNote.ReturnOptionObject;
                     break;
                 case "CreateClientContact":
+                    var ROI = new ReleaseOfInformation();
+                    ROI.Initialize(optionObject);
+                    var ClientContactRepository = new ClientContactRepository();
                     break;
                 default:
                     break;
