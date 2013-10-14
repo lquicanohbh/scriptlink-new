@@ -287,6 +287,7 @@ namespace TestScriptLink2.CPT
             var dp = new StringBuilder();
             var hpiLocation = new StringBuilder();
             var mentalStatus = new Dictionary<string, StringBuilder>();
+            var other = new StringBuilder();
             sb.AppendFormat("Chief Complaint: {0}\n", GetFieldValue(this.ChiefComplaintFieldNumber));//chiefcomplaint
             foreach (var dictionary in list)
             {
@@ -346,6 +347,10 @@ namespace TestScriptLink2.CPT
                             dp.AppendFormat("Other procedures addressed:\n");
                         dp.AppendFormat("-{0}.\n", dictionary.FieldDescription);
                     }
+                    else if (GetSectionList("Other").Contains(dictionary.FieldNumber))
+                    {
+                        dp.AppendFormat("{0} {1}. {2}\n", dictionary.Value, dictionary.FieldDescription, GetOtherString(dictionary));
+                    }
                 }
             }
             if (pp.Length != 0)
@@ -381,7 +386,8 @@ namespace TestScriptLink2.CPT
                 sb.AppendFormat("{0}\n", dp.ToString());
             if (ic.Length != 0)
                 sb.AppendFormat("{0}\n", ic.ToString());
-
+            if (other.Length != 0)
+                sb.AppendFormat("{0}\n", other.ToString());
             return sb.ToString();
         }
         private void UpdateMentalStatusSummary(Dictionary<string, StringBuilder> mentalStatus, FormDictionary dictionary)
@@ -428,6 +434,25 @@ namespace TestScriptLink2.CPT
                 return String.Empty;
             }
         }
+        private string GetOtherString(FormDictionary dictionary)
+        {
+            if (dictionary.FieldNumber == "153.52")//medication
+            {
+                return GetFieldValue("153.53").Replace("\n", " ");
+            }
+            else if (dictionary.FieldNumber == "153.54")//substance abuse
+            {
+                return GetFieldValue("153.55").Replace("\n", " ");
+            }
+            else if (dictionary.FieldNumber == "153.56")//pregnancy
+            {
+                return GetFieldValue("153.57").Replace("\n", " ");
+            }
+            else
+            {
+                return String.Empty;
+            }
+        }
         private string GetHPIComments(string fieldNumber)
         {
             if (fieldNumber == "152.51")//location
@@ -436,7 +461,7 @@ namespace TestScriptLink2.CPT
             }
             else if (fieldNumber == "152.84")//context
             {
-                return GetFieldValue("151.49");
+                return GetFieldValue("152.49");
             }
             else if (fieldNumber == "152.85")//modifying factors
             {
@@ -446,9 +471,9 @@ namespace TestScriptLink2.CPT
             {
                 return GetFieldValue("152.55");
             }
-            else if (fieldNumber == "151.43")//duration
+            else if (fieldNumber == "152.43")//duration
             {
-                return GetFieldValue("151.42");
+                return GetFieldValue("152.42");
             }
             else
             {
@@ -540,6 +565,10 @@ namespace TestScriptLink2.CPT
                     var temp9 = new List<string> { "153.13", "153.14", "153.15", "153.16", "153.17" };
                     temp9.ForEach(x => list.Add(x));
                     break;
+                case "Other":
+                    var temp10 = new List<string> { "153.52", "153.54", "153.56" };
+                    temp10.ForEach(x => list.Add(x));
+                    break;
                 default:
                     list = null;
                     break;
@@ -630,6 +659,13 @@ namespace TestScriptLink2.CPT
             dictionaryList.Add(new FormDictionary { FieldNumber = "152.96" });
             dictionaryList.Add(new FormDictionary { FieldNumber = "152.97" });
             #endregion
+
+            #region Other
+            dictionaryList.Add(new FormDictionary { FieldNumber = "153.52" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "153.54" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "153.56" });
+            #endregion
+
             return dictionaryList;
         }
         private void GetAndSetField(List<FormDictionary> list, string fieldNumber, string fieldValue)
