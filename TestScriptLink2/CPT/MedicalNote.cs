@@ -584,6 +584,7 @@ namespace TestScriptLink2.CPT
             dictionaryList.Add(new FormDictionary { FieldNumber = "152.77" });
             dictionaryList.Add(new FormDictionary { FieldNumber = "152.78" });
             dictionaryList.Add(new FormDictionary { FieldNumber = "152.79" });
+            dictionaryList.Add(new FormDictionary { FieldNumber = "153.58" });
             #endregion
 
             #region Mental Status Examination
@@ -672,7 +673,7 @@ namespace TestScriptLink2.CPT
             var PFSHFields = new List<string> { "152.4", "152.89", "152.9" };
             var ROSFields = new List<string> {"152.72","152.66","152.68","152.67","152.69",
                 "152.7","152.73","152.74","152.75","152.76",
-                "152.77","152.78","152.79",};
+                "152.77","152.78","152.79","153.58"};
             #endregion
 
             #region Examination
