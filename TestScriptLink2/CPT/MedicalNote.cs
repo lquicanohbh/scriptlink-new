@@ -54,7 +54,7 @@ namespace TestScriptLink2.CPT
             this.PlanFieldNumber = "151.99";
             this.ParticipantsFieldNumber = "152.71";
             this.NoteSummaryFieldNumber = "152.88";
-            this.DateFieldNumber = "151.95";    
+            this.DateFieldNumber = "151.95";
             this.VitalSignsFieldNumber = "153.05";
             this.ProgramFieldNumber = "152.33";
             this.ServiceCodeFieldNumber = "152.3";
@@ -87,10 +87,11 @@ namespace TestScriptLink2.CPT
             var vitalSigns = VitalSignRepository.GetByDateClient(this.OriginalOptionObject.EntityID, DateTime.Parse(dateField.FieldValue));
             if (vitalSigns != null)
             {
-                UpdateReturnOptionObject(this.VitalSignsFieldNumber, FormatVitalSigns(vitalSigns));
+                var tempFieldObject = new FieldObject { FieldNumber = this.VitalSignsFieldNumber, FieldValue = FormatVitalSigns(vitalSigns) };
+                UpdateReturnOptionObject(tempFieldObject);
             }
         }
-        private void CreateReturnOptionObject(string FieldNumber, string FieldValue)
+        private void CreateReturnOptionObject(FieldObject NewField)
         {
             this.ReturnOptionObject.Forms.Add(new FormObject
             {
@@ -100,24 +101,13 @@ namespace TestScriptLink2.CPT
                     ParentRowId = this.ReturnCurrentRowObject.ParentRowId,
                     RowId = this.ReturnCurrentRowObject.RowId,
                     RowAction = this.ReturnCurrentRowObject.RowAction,
-                    Fields = new List<FieldObject>
-                        {
-                            new FieldObject{
-                                FieldNumber = FieldNumber,
-                                FieldValue = FieldValue
-                            }
-                        }
+                    Fields = new List<FieldObject> { NewField }
                 }
             });
         }
-        private void AddFieldToReturnOptionObject(string FieldNumber, string FieldValue)
+        private void AddFieldToReturnOptionObject(FieldObject NewField)
         {
-            this.ReturnOptionObject.Forms.First().CurrentRow.Fields.Add(
-                    new FieldObject
-                    {
-                        FieldNumber = FieldNumber,
-                        FieldValue = FieldValue
-                    });
+            this.ReturnOptionObject.Forms.First().CurrentRow.Fields.Add(NewField);
         }
         public void CopyProblem()
         {
@@ -136,7 +126,26 @@ namespace TestScriptLink2.CPT
                     {
                         if (String.IsNullOrEmpty(tempField.FieldValue))
                         {
-                            UpdateReturnOptionObject(tempField.FieldNumber, fieldValue);
+                            var tempFieldObject = new FieldObject
+                            {
+                                FieldNumber = tempField.FieldNumber,
+                                FieldValue = fieldValue,
+                                Enabled = "1"
+                            };
+                            UpdateReturnOptionObject(tempFieldObject);
+                            try
+                            {
+                                var ProblemTypeField = GetCompanionProblemTypeField(tempFieldObject);
+                                if (ProblemTypeField != null)
+                                {
+                                    ProblemTypeField.Required = "1";
+                                    ProblemTypeField.Enabled = "1";
+                                    UpdateReturnOptionObject(ProblemTypeField);
+                                }
+                            }
+                            catch(Exception ex)
+                            {
+                            };
                             tempField.FieldValue = "X";
                             break;
                         }
@@ -144,7 +153,29 @@ namespace TestScriptLink2.CPT
                 }
             }
         }
-
+        private FieldObject GetCompanionProblemTypeField(FieldObject ProblemField)
+        {
+            var tempFieldObject = new FieldObject();
+            switch (ProblemField.FieldNumber)
+            {
+                case "153.08":
+                    tempFieldObject.FieldNumber = "153.01";
+                    break;
+                case "153.09":
+                    tempFieldObject.FieldNumber = "153.02";
+                    break;
+                case "153.1":
+                    tempFieldObject.FieldNumber = "153.03";
+                    break;
+                case "153.11":
+                    tempFieldObject.FieldNumber = "153.04";
+                    break;
+                default:
+                    tempFieldObject = null;
+                    break;
+            }
+            return tempFieldObject;
+        }
         public void CreateChiefComplaint()
         {
             var currentChiefComplaintValue = this.OriginalOptionObject.Forms.First().CurrentRow.Fields.FirstOrDefault(f => f.FieldNumber.Equals(this.ChiefComplaintFieldNumber));
@@ -157,7 +188,12 @@ namespace TestScriptLink2.CPT
                     Client.GenderValue,
                     Client.RaceValue,
                     DateTime.Now.ToShortDateString());
-                UpdateReturnOptionObject(this.ChiefComplaintFieldNumber, DefaultText);
+                var tempFieldObject = new FieldObject
+                {
+                    FieldNumber = this.ChiefComplaintFieldNumber,
+                    FieldValue = DefaultText
+                };
+                UpdateReturnOptionObject(tempFieldObject);
             }
         }
         public void UpdateChiefComplaint()
@@ -169,9 +205,23 @@ namespace TestScriptLink2.CPT
             var DictionaryValues = DictionaryRepository.GetDictionaryValues(ParticipantsField.FieldNumber, ParticipantsParameter);
 
             if (DictionaryValues.Count > 0)
-                UpdateReturnOptionObject(this.ChiefComplaintFieldNumber, AppendParticipantsToCurrentChiefComplaint(ChiefComplaintField.FieldValue, DictionaryValues));
+            {
+                var tempFieldObject = new FieldObject
+                {
+                    FieldNumber = this.ChiefComplaintFieldNumber,
+                    FieldValue = AppendParticipantsToCurrentChiefComplaint(ChiefComplaintField.FieldValue, DictionaryValues)
+                };
+                UpdateReturnOptionObject(tempFieldObject);
+            }
             else
-                UpdateReturnOptionObject(this.ChiefComplaintFieldNumber, GetOriginalTextInChiefComplaint(ChiefComplaintField.FieldValue));
+            {
+                var tempFieldObject = new FieldObject
+                {
+                    FieldNumber = this.ChiefComplaintFieldNumber,
+                    FieldValue = GetOriginalTextInChiefComplaint(ChiefComplaintField.FieldValue)
+                };
+                UpdateReturnOptionObject(tempFieldObject);
+            }
         }
         public void DefaultMostRecentProblem()
         {
@@ -183,7 +233,12 @@ namespace TestScriptLink2.CPT
                     1);
                 var problem = problems.FirstOrDefault();
                 var problemDescription = problem == null ? String.Empty : String.Format("({0}) {1}", problem.ProblemCode, problem.ProblemDescription);
-                UpdateReturnOptionObject(this.Problem1FieldNumber, problemDescription);
+                var tempFieldObject = new FieldObject
+                {
+                    FieldNumber = this.Problem1FieldNumber,
+                    FieldValue = problemDescription
+                };
+                UpdateReturnOptionObject(tempFieldObject);
             }
         }
         public void DefaultCurrentProgram()
@@ -194,7 +249,12 @@ namespace TestScriptLink2.CPT
                 var client = ClientRepository.GetClientByIdWithEpisode(
                     this.OriginalOptionObject.EntityID,
                     this.OriginalOptionObject.EpisodeNumber);
-                UpdateReturnOptionObject(this.ProgramFieldNumber, client.EpisodeInformation.ProgramCode);
+                var tempFieldObject = new FieldObject
+                {
+                    FieldNumber = this.ProgramFieldNumber,
+                    FieldValue = client.EpisodeInformation.ProgramCode
+                };
+                UpdateReturnOptionObject(tempFieldObject);
             }
         }
         public void DefaultMGAF()
@@ -205,18 +265,23 @@ namespace TestScriptLink2.CPT
                 var note = ProgressNoteRepository.GetLastMGAF(
                     this.OriginalOptionObject.EntityID,
                     this.OriginalOptionObject.EpisodeNumber);
-                UpdateReturnOptionObject(this.MGAFFieldNumber, note.MGAF);
+                var tempFieldObject = new FieldObject
+                {
+                    FieldNumber = this.MGAFFieldNumber,
+                    FieldValue = note.MGAF
+                };
+                UpdateReturnOptionObject(tempFieldObject);
             }
         }
-        private void UpdateReturnOptionObject(string FieldNumber, string FieldValue)
+        private void UpdateReturnOptionObject(FieldObject NewField)
         {
             if (this.ReturnOptionObject.Forms.Any() && this.ReturnOptionObject.Forms.First().CurrentRow.Fields.Any())
             {
-                AddFieldToReturnOptionObject(FieldNumber, FieldValue);
+                AddFieldToReturnOptionObject(NewField);
             }
             else
             {
-                CreateReturnOptionObject(FieldNumber, FieldValue);
+                CreateReturnOptionObject(NewField);
             }
         }
         private string AppendParticipantsToCurrentChiefComplaint(string CurrentText, List<FormDictionary> Dictionaries)
@@ -259,7 +324,12 @@ namespace TestScriptLink2.CPT
             var populatedList = PopulateDictionary(dictionaryList);
 
             var summaryText = GetSummaryText(populatedList);
-            UpdateReturnOptionObject(this.NoteSummaryFieldNumber, summaryText);
+            var tempFieldObject = new FieldObject
+            {
+                FieldNumber = this.NoteSummaryFieldNumber,
+                FieldValue = summaryText
+            };
+            UpdateReturnOptionObject(tempFieldObject);
         }
         public void GetServiceCode()
         {
@@ -271,8 +341,20 @@ namespace TestScriptLink2.CPT
             var populatedList = PopulateDictionary(dictionaryList);
             var serviceCode = CalculateServiceCode(populatedList, OriginalOptionObject.Forms.First().CurrentRow.Fields);
             if (serviceCode.InteractiveComplexity)
-                UpdateReturnOptionObject(this.ICFieldNumber, "1");
-            UpdateReturnOptionObject(this.ServiceCodeFieldNumber, serviceCode.ServiceCode);
+            {
+                var tempFieldObject = new FieldObject
+                {
+                    FieldNumber = this.ICFieldNumber,
+                    FieldValue = "1"
+                };
+                UpdateReturnOptionObject(tempFieldObject);
+            }
+            var tempFieldObject2 = new FieldObject
+            {
+                FieldNumber = this.ServiceCodeFieldNumber,
+                FieldValue = serviceCode.ServiceCode
+            };
+            UpdateReturnOptionObject(tempFieldObject2);
         }
         private string GetSummaryText(List<FormDictionary> list)
         {
