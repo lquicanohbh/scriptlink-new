@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AvatarSQLContext.cs" />
+    <Compile Include="ClientDemographics.cs" />
     <Compile Include="CPT\MedicalNote.cs" />
     <Compile Include="DCI\ContactName.cs" />
     <Compile Include="DCI\Option.cs" />
@@ -117,6 +118,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <Compile Include="Web References\ClientDemographicsWebSvc\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\DCIImport\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -146,6 +152,17 @@
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\ClientChargeInput\WEBSVC.wsdl" />
+    <None Include="Web References\ClientDemographicsWebSvc\DictionaryItemObject1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ClientDemographicsWebSvc\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\ClientDemographicsWebSvc\WebServiceResponse1.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ClientDemographicsWebSvc\WEBSVC.wsdl" />
     <None Include="Web References\DCIImport\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -163,6 +180,17 @@
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>TestScriptLink2_ClientChargeInput_ClientChargeInput</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://avtest:8972/csp/HMHCPMLIVE/WEBSVC.ClientDemographics.CLS%3fWSDL=1">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ClientDemographicsWebSvc\</RelPath>
+      <UpdateFromURL>http://avtest:8972/csp/HMHCPMLIVE/WEBSVC.ClientDemographics.CLS%3fWSDL=1</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>TestScriptLink2_ClientDemographics_ClientDemographics</CachedSettingsPropName>
     </WebReferenceUrl>
     <WebReferenceUrl Include="http://avtest:8972/csp/hmhcpmlive/WEBSVC.DCIImport.CLS%3fWSDL">
       <UrlBehavior>Dynamic</UrlBehavior>

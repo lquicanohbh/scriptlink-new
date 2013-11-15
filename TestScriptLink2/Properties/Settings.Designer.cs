@@ -42,5 +42,15 @@ namespace TestScriptLink2.Properties {
                 return ((string)(this["TestScriptLink2_ClientChargeInput_ClientChargeInput"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://avtest:8972/csp/hmhcpmlive/WEBSVC.ClientDemographics.cls")]
+        public string TestScriptLink2_ClientDemographics_ClientDemographics {
+            get {
+                return ((string)(this["TestScriptLink2_ClientDemographics_ClientDemographics"]));
+            }
+        }
     }
 }

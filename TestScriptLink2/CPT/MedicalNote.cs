@@ -143,7 +143,7 @@ namespace TestScriptLink2.CPT
                                     UpdateReturnOptionObject(ProblemTypeField);
                                 }
                             }
-                            catch(Exception ex)
+                            catch (Exception ex)
                             {
                             };
                             tempField.FieldValue = "X";
@@ -181,7 +181,7 @@ namespace TestScriptLink2.CPT
             var currentChiefComplaintValue = this.OriginalOptionObject.Forms.First().CurrentRow.Fields.FirstOrDefault(f => f.FieldNumber.Equals(this.ChiefComplaintFieldNumber));
             if (currentChiefComplaintValue != null && String.IsNullOrEmpty(currentChiefComplaintValue.FieldValue))
             {
-                var Client = ClientRepository.GetClientById(this.OriginalOptionObject.EntityID);
+                var Client = new ClientRepository().GetClientById(this.OriginalOptionObject.EntityID);
                 var DefaultText = String.Format("Patient, {0}, a {1} year old {2} {3} came in for follow-up on {4}.",
                     Client.Name,
                     Client.Age,
@@ -246,7 +246,7 @@ namespace TestScriptLink2.CPT
             var currentProgramValue = this.OriginalOptionObject.Forms.First().CurrentRow.Fields.FirstOrDefault(f => f.FieldNumber.Equals(this.ProgramFieldNumber));
             if (currentProgramValue != null && String.IsNullOrEmpty(currentProgramValue.FieldValue))
             {
-                var client = ClientRepository.GetClientByIdWithEpisode(
+                var client = new ClientRepository().GetClientByIdWithEpisode(
                     this.OriginalOptionObject.EntityID,
                     this.OriginalOptionObject.EpisodeNumber);
                 var tempFieldObject = new FieldObject

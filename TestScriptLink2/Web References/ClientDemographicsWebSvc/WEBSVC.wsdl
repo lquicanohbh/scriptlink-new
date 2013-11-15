@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:s0="http://tempuri.org" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org">
+      <s:element name="GetDictionaryItems">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="SystemCode" type="s:string" />
+            <s:element minOccurs="0" name="UserName" type="s:string" />
+            <s:element minOccurs="0" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDictionaryItemsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="GetDictionaryItemsResult" type="s0:ArrayOfDictionaryItemObjectDictionaryItemObject" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDictionaryItemObjectDictionaryItemObject">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DictionaryItemObject" nillable="true" type="s0:DictionaryItemObject" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DictionaryItemObject">
+        <s:sequence>
+          <s:element minOccurs="0" name="DictionaryCode" type="s:string" />
+          <s:element minOccurs="0" name="DictionaryFieldDescription" type="s:string" />
+          <s:element minOccurs="0" name="DictionaryUniqueId" type="s:string" />
+          <s:element minOccurs="0" name="DictionaryValue" type="s:string" />
+          <s:element minOccurs="0" name="Mesg" type="s:string" />
+          <s:element minOccurs="0" name="Status" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateClientDemographics">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" name="SystemCode" type="s:string" />
+            <s:element minOccurs="0" name="UserName" type="s:string" />
+            <s:element minOccurs="0" name="Password" type="s:string" />
+            <s:element minOccurs="0" name="ClientDemographicsInfo" type="s0:ClientDemographicsObject" />
+            <s:element minOccurs="0" name="ClientID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ClientDemographicsObject">
+        <s:sequence>
+          <s:element minOccurs="0" name="EnglishProficiency" type="s:string" />
+          <s:element minOccurs="0" name="FamilySize" type="s:string" />
+          <s:element minOccurs="0" name="FamilyIncome" type="s:string" />
+          <s:element minOccurs="0" name="PregnancyStatus" type="s:string" />
+          <s:element minOccurs="0" name="Alias" type="s:string" />
+          <s:element minOccurs="0" name="Alias10" type="s:string" />
+          <s:element minOccurs="0" name="Alias2" type="s:string" />
+          <s:element minOccurs="0" name="Alias3" type="s:string" />
+          <s:element minOccurs="0" name="Alias4" type="s:string" />
+          <s:element minOccurs="0" name="Alias5" type="s:string" />
+          <s:element minOccurs="0" name="Alias6" type="s:string" />
+          <s:element minOccurs="0" name="Alias7" type="s:string" />
+          <s:element minOccurs="0" name="Alias8" type="s:string" />
+          <s:element minOccurs="0" name="Alias9" type="s:string" />
+          <s:element minOccurs="0" name="Citizenship" type="s:string" />
+          <s:element minOccurs="0" name="ClientAddressCity" type="s:string" />
+          <s:element minOccurs="0" name="ClientAddressCountry" type="s:string" />
+          <s:element minOccurs="0" name="ClientAddressCounty" type="s:string" />
+          <s:element minOccurs="0" name="ClientAddressState" type="s:string" />
+          <s:element minOccurs="0" name="ClientAddressStreet" type="s:string" />
+          <s:element minOccurs="0" name="ClientAddressStreet2" type="s:string" />
+          <s:element minOccurs="0" name="ClientAddressZipcode" type="s:string" />
+          <s:element minOccurs="0" name="ClientCellPhone" type="s:string" />
+          <s:element minOccurs="0" name="ClientConfAddressCity" type="s:string" />
+          <s:element minOccurs="0" name="ClientConfAddressCountry" type="s:string" />
+          <s:element minOccurs="0" name="ClientConfAddressState" type="s:string" />
+          <s:element minOccurs="0" name="ClientConfAddressStreet" type="s:string" />
+          <s:element minOccurs="0" name="ClientConfAddressStreet2" type="s:string" />
+          <s:element minOccurs="0" name="ClientConfAddressZipcode" type="s:string" />
+          <s:element minOccurs="0" name="ClientConfPhoneNumber" type="s:string" />
+          <s:element minOccurs="0" name="ClientEmailAddress" type="s:string" />
+          <s:element minOccurs="0" name="ClientFirstName" type="s:string" />
+          <s:element minOccurs="0" name="ClientHomePhone" type="s:string" />
+          <s:element minOccurs="0" name="ClientLastName" type="s:string" />
+          <s:element minOccurs="0" name="ClientMailAddressCity" type="s:string" />
+          <s:element minOccurs="0" name="ClientMailAddressCountry" type="s:string" />
+          <s:element minOccurs="0" name="ClientMailAddressState" type="s:string" />
+          <s:element minOccurs="0" name="ClientMailAddressStreet" type="s:string" />
+          <s:element minOccurs="0" name="ClientMailAddressStreet2" type="s:string" />
+          <s:element minOccurs="0" name="ClientMailAddressZipcode" type="s:string" />
+          <s:element minOccurs="0" name="ClientMiddleName" type="s:string" />
+          <s:element minOccurs="0" name="ClientName" type="s:string" />
+          <s:element minOccurs="0" name="ClientPrefix" type="s:string" />
+          <s:element minOccurs="0" name="ClientRace" type="s:string" />
+          <s:element minOccurs="0" name="ClientSuffix" type="s:string" />
+          <s:element minOccurs="0" name="ClientWorkPhone" type="s:string" />
+          <s:element minOccurs="0" name="CommunicationPreference" type="s:string" />
+          <s:element minOccurs="0" name="CountryOfOrigin" type="s:string" />
+          <s:element minOccurs="0" name="DateOfBirth" type="s:date" />
+          <s:element minOccurs="0" name="Education" type="s:string" />
+          <s:element minOccurs="0" name="EmploymentStatus" type="s:string" />
+          <s:element minOccurs="0" name="EthnicOrigin" type="s:string" />
+          <s:element minOccurs="0" name="FacilityChartNumber" type="s:string" />
+          <s:element minOccurs="0" name="GUID" type="s:string" />
+          <s:element minOccurs="0" name="MaidenName" type="s:string" />
+          <s:element minOccurs="0" name="MaritalStatus" type="s:string" />
+          <s:element minOccurs="0" name="Occupation" type="s:string" />
+          <s:element minOccurs="0" name="OtherEthnicOrigins" type="s:string" />
+          <s:element minOccurs="0" name="OtherRaces" type="s:string" />
+          <s:element minOccurs="0" name="ClientDeclinedToProvideInfo" type="s:string" />
+          <s:element minOccurs="0" name="PlaceOfBirth" type="s:string" />
+          <s:element minOccurs="0" name="PreferredProvidersEthnicOrigin" type="s:string" />
+          <s:element minOccurs="0" name="PreferredProvidersSex" type="s:string" />
+          <s:element minOccurs="0" name="PrimaryLanguage" type="s:string" />
+          <s:element minOccurs="0" name="Religion" type="s:string" />
+          <s:element minOccurs="0" name="Smoker" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsDate1" type="s:date" />
+          <s:element minOccurs="0" name="SSDemographicsDate2" type="s:date" />
+          <s:element minOccurs="0" name="SSDemographicsDate3" type="s:date" />
+          <s:element minOccurs="0" name="SSDemographicsDate4" type="s:date" />
+          <s:element minOccurs="0" name="SSDemographicsDate5" type="s:date" />
+          <s:element minOccurs="0" name="SSDemographicsDict1" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsDict10" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsDict2" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsDict3" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsDict4" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsDict5" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsDict6" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsDict7" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsDict8" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsDict9" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsFreeText201" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsFreeText202" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsFreeText203" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsFreeText204" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsFreeText205" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsFreeText401" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsFreeText402" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsFreeText403" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsFreeText404" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsFreeText405" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsMult1" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsMult2" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsMult3" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsMult4" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsMult5" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsPhone1" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsPhone2" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsPhone3" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsPhone4" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsPhone5" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsPractitioner1" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsPractitioner2" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsPractitioner3" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsPractitioner4" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsPractitioner5" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsScrollFreeText1">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="32766" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSDemographicsScrollFreeText2">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="32766" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSDemographicsScrollFreeText3">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="32766" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSDemographicsScrollFreeText4">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="32766" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSDemographicsScrollFreeText5">
+            <s:simpleType>
+              <s:restriction base="s:string">
+                <s:maxLength value="32766" />
+              </s:restriction>
+            </s:simpleType>
+          </s:element>
+          <s:element minOccurs="0" name="SSDemographicsTime1" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsTime2" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsTime3" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsTime4" type="s:string" />
+          <s:element minOccurs="0" name="SSDemographicsTime5" type="s:string" />
+          <s:element minOccurs="0" name="Sex" type="s:string" />
+          <s:element minOccurs="0" name="SocialSecurityNumber" type="s:string" />
+          <s:element minOccurs="0" name="SocialSecurityNumber2" type="s:string" />
+          <s:element minOccurs="0" name="SocialSecurityNumber3" type="s:string" />
+          <s:element minOccurs="0" name="SocialSecurityNumber4" type="s:string" />
+          <s:element minOccurs="0" name="PolicyNumber1" type="s:string" />
+          <s:element minOccurs="0" name="Guarantor1" type="s:string" />
+          <s:element minOccurs="0" name="PolicyNumber2" type="s:string" />
+          <s:element minOccurs="0" name="Guarantor2" type="s:string" />
+          <s:element minOccurs="0" name="PolicyNumber3" type="s:string" />
+          <s:element minOccurs="0" name="Guarantor3" type="s:string" />
+          <s:element minOccurs="0" name="PolicyNumber4" type="s:string" />
+          <s:element minOccurs="0" name="Guarantor4" type="s:string" />
+          <s:element minOccurs="0" name="PolicyNumber5" type="s:string" />
+          <s:element minOccurs="0" name="Guarantor5" type="s:string" />
+          <s:element minOccurs="0" name="PolicyNumber6" type="s:string" />
+          <s:element minOccurs="0" name="Guarantor6" type="s:string" />
+          <s:element minOccurs="0" name="PolicyNumber7" type="s:string" />
+          <s:element minOccurs="0" name="Guarantor7" type="s:string" />
+          <s:element minOccurs="0" name="PolicyNumber8" type="s:string" />
+          <s:element minOccurs="0" name="Guarantor8" type="s:string" />
+          <s:element minOccurs="0" name="PolicyNumber9" type="s:string" />
+          <s:element minOccurs="0" name="Guarantor9" type="s:string" />
+          <s:element minOccurs="0" name="PolicyNumber10" type="s:string" />
+          <s:element minOccurs="0" name="Guarantor10" type="s:string" />
+          <s:element minOccurs="0" name="UTCTimestamp" type="s:dateTime" />
+          <s:element minOccurs="0" name="ExpectedDueDate" type="s:date" />
+          <s:element minOccurs="0" name="LactatingStatus" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateClientDemographicsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element name="UpdateClientDemographicsResult" type="s0:WebServiceResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="WebServiceResponse">
+        <s:sequence>
+          <s:element minOccurs="0" name="Confirmation" type="s:string" />
+          <s:element minOccurs="0" name="Message" type="s:string" />
+          <s:element minOccurs="0" name="ResponseCode" type="s:string" />
+          <s:element minOccurs="0" name="ResponseObjects" type="s0:ArrayOfResponseObjectResponseObject" />
+          <s:element minOccurs="0" name="Status" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfResponseObjectResponseObject">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ResponseObject" nillable="true" type="s0:ResponseObject" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ResponseObject">
+        <s:sequence>
+          <s:element minOccurs="0" name="Confirmation" type="s:string" />
+          <s:element minOccurs="0" name="Message" type="s:string" />
+          <s:element minOccurs="0" name="Status" type="s:long" />
+          <s:element minOccurs="0" name="ResponseCode" type="s:string" />
+          <s:element minOccurs="0" name="UniqueID" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetDictionaryItemsSoapIn">
+    <wsdl:part name="parameters" element="s0:GetDictionaryItems" />
+  </wsdl:message>
+  <wsdl:message name="GetDictionaryItemsSoapOut">
+    <wsdl:part name="parameters" element="s0:GetDictionaryItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateClientDemographicsSoapIn">
+    <wsdl:part name="parameters" element="s0:UpdateClientDemographics" />
+  </wsdl:message>
+  <wsdl:message name="UpdateClientDemographicsSoapOut">
+    <wsdl:part name="parameters" element="s0:UpdateClientDemographicsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ClientDemographicsSoap">
+    <wsdl:operation name="GetDictionaryItems">
+      <wsdl:input message="s0:GetDictionaryItemsSoapIn" />
+      <wsdl:output message="s0:GetDictionaryItemsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateClientDemographics">
+      <wsdl:input message="s0:UpdateClientDemographicsSoapIn" />
+      <wsdl:output message="s0:UpdateClientDemographicsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ClientDemographicsSoap" type="s0:ClientDemographicsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetDictionaryItems">
+      <soap:operation soapAction="http://tempuri.org/WEBSVC.ClientDemographics.GetDictionaryItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateClientDemographics">
+      <soap:operation soapAction="http://tempuri.org/WEBSVC.ClientDemographics.UpdateClientDemographics" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ClientDemographics">
+    <wsdl:port name="ClientDemographicsSoap" binding="s0:ClientDemographicsSoap">
+      <soap:address location="http://avtest:8972/csp/hmhcpmlive/WEBSVC.ClientDemographics.cls" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

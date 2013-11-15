@@ -21,6 +21,19 @@ namespace TestScriptLink2
                 return writer.ToString();
             }
         }
+        public static bool SplitAndGetValueAt(string Scriptname, char delimiter, int index, out string value)
+        {
+            try
+            {
+                value = Scriptname.Split(delimiter)[index];
+                return true;
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                value = null;
+                return false;
+            }
+        }
         public static DateTime? GetNullableDatetime(OdbcDataReader reader, string columnName)
         {
             int x = reader.GetOrdinal(columnName);

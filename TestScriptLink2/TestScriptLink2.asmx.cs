@@ -101,6 +101,23 @@ namespace TestScriptLink2
                     ROI.Initialize(optionObject);
                     var ClientContactRepository = new ClientContactRepository();
                     break;
+                case "UpdateDemographics":
+                    var Demo = new ClientDemographics(optionObject);
+                    string fieldNumber = null;
+                    if (Helper.SplitAndGetValueAt(scriptName, ',', 1, out fieldNumber))
+                    {
+                        var LGBTField = Demo.GetField(fieldNumber);
+                        if (LGBTField != null && !String.IsNullOrEmpty(LGBTField.FieldValue))
+                        {
+                            var client = new ClientDemographicsWebSvc.ClientDemographicsObject()
+                            {
+                                SSDemographicsDict8 = LGBTField.FieldValue
+                            };
+                            Demo.UpdateDemographics(client);
+                        }
+                        returnOptionObject = Demo.ReturnOptionObject;
+                    }
+                    break;
                 default:
                     break;
             }
