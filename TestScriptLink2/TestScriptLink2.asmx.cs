@@ -8,6 +8,7 @@ using System.Configuration;
 using TestScriptLink2.CPT;
 using TestScriptLink2.Entities;
 using TestScriptLink2.Repositories;
+using TestScriptLink2.CopyFieldValue;
 
 namespace TestScriptLink2
 {
@@ -117,6 +118,12 @@ namespace TestScriptLink2
                         }
                         returnOptionObject = Demo.ReturnOptionObject;
                     }
+                    break;
+                case "CopyFieldValue":
+                    var copyField = new FieldCopy(optionObject, scriptName);
+                    copyField.PerformCopy();
+                    copyField.PopulateReturnOptionObject();
+                    returnOptionObject = copyField.ReturnOptionObject;
                     break;
                 default:
                     break;

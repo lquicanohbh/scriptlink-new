@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="AvatarSQLContext.cs" />
     <Compile Include="ClientDemographics.cs" />
+    <Compile Include="CopyFieldValue\FieldCopy.cs" />
     <Compile Include="CPT\MedicalNote.cs" />
     <Compile Include="DCI\ContactName.cs" />
     <Compile Include="DCI\Option.cs" />
