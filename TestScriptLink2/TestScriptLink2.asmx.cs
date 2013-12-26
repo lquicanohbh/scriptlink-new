@@ -9,6 +9,7 @@ using TestScriptLink2.CPT;
 using TestScriptLink2.Entities;
 using TestScriptLink2.Repositories;
 using TestScriptLink2.CopyFieldValue;
+using TestScriptLink2.Required;
 
 namespace TestScriptLink2
 {
@@ -125,6 +126,12 @@ namespace TestScriptLink2
                     copyField.PopulateReturnOptionObject();
                     returnOptionObject = copyField.ReturnOptionObject;
                     break;
+                case "MakeRequiredCond":
+                    var fieldsRequired = new FieldsRequiredConditionally(optionObject, scriptName);
+                    fieldsRequired.MakeFieldsRequired();
+                    fieldsRequired.PopulateReturnOptionObject();
+                    returnOptionObject = fieldsRequired.ReturnOptionObject;
+                    break;
                 default:
                     break;
             }
@@ -209,57 +216,6 @@ namespace TestScriptLink2
 
 
         }
-        //private OptionObject AddNewClientContact(OptionObject optionObject)
-        //{
-        //    var returnOptionObject = new OptionObject();
-        //    var Acknowledgment = new FieldObject("131.88");
-        //    var EntryDate = new FieldObject("131.77");
 
-        //    foreach (var form in optionObject.Forms)
-        //    {
-        //        foreach (var field in form.CurrentRow.Fields)
-        //        {
-        //            if (field.FieldNumber.Equals(Acknowledgment.FieldNumber))
-        //                Acknowledgment.FieldValue = field.FieldValue;
-        //            if (field.FieldNumber.Equals(EntryDate.FieldNumber))
-        //                EntryDate.FieldValue = field.FieldValue;
-        //        }
-        //    }
-        //    if (Acknowledgment.FieldValue.Equals("1"))
-        //    {
-        //        List<NewClientContact> contactInformationList = NewClientContactRepository.GetContactInfo(optionObject.EntityID, optionObject.EpisodeNumber.ToString(), DateTime.Parse(EntryDate.FieldValue));//, DateTime.Now);
-        //        AddContact(contactInformationList);
-        //    }
-        //    returnOptionObject.EntityID = optionObject.EntityID;
-        //    returnOptionObject.OptionId = optionObject.OptionId;
-        //    returnOptionObject.Facility = optionObject.Facility;
-        //    returnOptionObject.SystemCode = optionObject.SystemCode;
-
-        //    return returnOptionObject;
-        //}
-        //private void AddContact(List<NewClientContact> contactInformationList)
-        //{
-        //    string xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
-        //                                "<option>" +
-        //                                "<optionidentifier>USER34</optionidentifier>";
-        //    string xmlFooter = "</option>";
-        //    var SystemCode = ConfigurationManager.AppSettings["SystemCode"].ToString();
-        //    var Username = ConfigurationManager.AppSettings["Username"].ToString();
-        //    var Password = ConfigurationManager.AppSettings["Password"].ToString();
-        //    var record = "";
-        //    long filewarnings = 1;
-        //    bool filewarningsSpecified = true;
-        //    string resultStream = "";
-        //    string recordStream = "";
-        //    recordStream = xmlHeader;
-        //    foreach (var contact in contactInformationList)
-        //    {
-        //        recordStream += contact.ToString();
-        //    }
-        //    recordStream += xmlFooter;
-        //    recordStream = "<?xml version=1.0 encoding=UTF-8 standalone=yes?><option><optionidentifier>USER40</optionidentifier><option_data><PATID>1000092</PATID><EPISODE_NUMBER>1</EPISODE_NUMBER><SYSTEM.new_client_contact_info><Contact_Date>2013-05-07</Contact_Date><Contact_Name>TEST,TEST</Contact_Name><Contact_Type>99</Contact_Type></SYSTEM.new_client_contact_info></option_data></option>";
-        //    var test = new DCIImport.DCIImport();
-        //    var result = test.ImportRecord(SystemCode, Username, Password, record, filewarnings, filewarningsSpecified, recordStream, resultStream);
-        //}
     }
 }
