@@ -10,6 +10,7 @@ using TestScriptLink2.Entities;
 using TestScriptLink2.Repositories;
 using TestScriptLink2.CopyFieldValue;
 using TestScriptLink2.Required;
+using TestScriptLink2.CrisisWalkinContactLog;
 
 namespace TestScriptLink2
 {
@@ -131,6 +132,12 @@ namespace TestScriptLink2
                     fieldsRequired.MakeFieldsRequired();
                     fieldsRequired.PopulateReturnOptionObject();
                     returnOptionObject = fieldsRequired.ReturnOptionObject;
+                    break;
+                case "CrisisWalkinDisposition":
+                    var crisisWalkin = new CrisisWalkin(optionObject, scriptName);
+                    crisisWalkin.UpdateFieldState();
+                    crisisWalkin.PopulateReturnOptionObject();
+                    returnOptionObject = crisisWalkin.ReturnOptionObject;
                     break;
                 default:
                     break;

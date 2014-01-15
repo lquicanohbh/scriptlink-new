@@ -16,6 +16,10 @@ namespace TestScriptLink2
         {
             return optionObject.Forms.First().CurrentRow.Fields.FirstOrDefault(f => f.FieldNumber.Equals(FieldNumber)).FieldValue;
         }
+        public static FieldObject GetField(OptionObject optionObject, string FieldNumber)
+        {
+            return optionObject.Forms.SelectMany(r => r.CurrentRow.Fields).FirstOrDefault(f => f.FieldNumber.Equals(FieldNumber));
+        }
         public static string SerializeToString(object obj)
         {
             XmlSerializer serializer = new XmlSerializer(obj.GetType());
