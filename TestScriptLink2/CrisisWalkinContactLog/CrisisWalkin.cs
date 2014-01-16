@@ -39,10 +39,10 @@ namespace TestScriptLink2.CrisisWalkinContactLog
 
             this.Dispositions = new List<FieldObject>();
             this.Dispositions.Add(new FieldObject("153.72"));
-            this.Dispositions.Add(new FieldObject("153.75"));
-            this.Dispositions.Add(new FieldObject("153.76"));
-            this.Dispositions.Add(new FieldObject("153.77"));
-            this.Dispositions.Add(new FieldObject("153.78"));
+            this.Dispositions.Add(new FieldObject("155.62"));
+            this.Dispositions.Add(new FieldObject("155.63"));
+            this.Dispositions.Add(new FieldObject("155.64"));
+            this.Dispositions.Add(new FieldObject("155.65"));
         }
 
         public void UpdateFieldState()
