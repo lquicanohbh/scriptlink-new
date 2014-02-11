@@ -69,6 +69,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorizationRelaseOfInformation\AuthorizationROI.cs" />
     <Compile Include="AvatarSQLContext.cs" />
     <Compile Include="ClientDemographics.cs" />
     <Compile Include="CopyFieldValue\FieldCopy.cs" />

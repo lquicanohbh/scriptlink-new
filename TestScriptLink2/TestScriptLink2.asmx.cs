@@ -11,6 +11,7 @@ using TestScriptLink2.Repositories;
 using TestScriptLink2.CopyFieldValue;
 using TestScriptLink2.Required;
 using TestScriptLink2.CrisisWalkinContactLog;
+using TestScriptLink2.AuthorizationReleaseOfInformation;
 
 namespace TestScriptLink2
 {
@@ -138,6 +139,12 @@ namespace TestScriptLink2
                     crisisWalkin.UpdateFieldState();
                     crisisWalkin.PopulateReturnOptionObject();
                     returnOptionObject = crisisWalkin.ReturnOptionObject;
+                    break;
+                case "AuthorizationROI":
+                    var authROI = new AuthorizationROI(optionObject, scriptName);
+                    authROI.UpdateFieldState();
+                    authROI.PopulateReturnOptionObject();
+                    returnOptionObject = authROI.ReturnOptionObject;
                     break;
                 default:
                     break;
