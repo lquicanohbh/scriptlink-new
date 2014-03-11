@@ -32,5 +32,7 @@ namespace TestScriptLink2.Entities
         {
             this.EpisodeInformation = new EpisodeInformation();
         }
+
+        public string City { get; set; }
     }
 }

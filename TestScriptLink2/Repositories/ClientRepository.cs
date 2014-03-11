@@ -27,6 +27,7 @@ namespace TestScriptLink2.Repositories
                                 "demo.patient_sex_code as GenderCode, " +
                                 "demo.patient_sex_value as GenderValue, " +
                                 "demo.date_of_birth as DateOfBirth, " +
+                                "demo.patient_add_city as City," +
                                 "demo.race_code as RaceCode, " +
                                 "demo.race_value as RaceValue " +
                                 "FROM SYSTEM.patient_current_demographics demo " +
@@ -52,6 +53,7 @@ namespace TestScriptLink2.Repositories
                                 client.DateOfBirth = reader.GetDate(reader.GetOrdinal("DateOfBirth"));
                                 client.RaceCode = reader["RaceCode"].ToString();
                                 client.RaceValue = reader["RaceValue"].ToString();
+                                client.City = reader["City"].ToString();
                                 #endregion
                             }
                             else

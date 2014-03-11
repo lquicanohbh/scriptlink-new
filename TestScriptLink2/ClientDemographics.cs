@@ -21,6 +21,9 @@ namespace TestScriptLink2
         {
             var clientRepo = new ClientRepository();
             PopulateReturnOptionObject();
+            var client = clientRepo.GetClientById(optionObject.EntityID);
+            if (!String.IsNullOrEmpty(client.City))
+                ClientDemo.ClientAddressCity = client.City;
             return clientRepo.UpdateClientDemographics(ClientDemo, optionObject.EntityID);
         }
 
