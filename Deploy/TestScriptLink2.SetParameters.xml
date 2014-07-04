@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="Default Web Site/TestScriptLink2_deploy" />
+  <setParameter name="AvatarDBPM-Web.config Connection String" value="DRIVER={InterSystems ODBC};SERVER=192.1.5.216;PORT=1972;DATABASE=HMHCPMLIVE;UID=LIVE:ODBC;PWD=hotwire2011;" />
+  <setParameter name="AvatarDBCWS-Web.config Connection String" value="DRIVER={InterSystems ODBC};SERVER=192.1.5.216;PORT=1972;DATABASE=HMHCCWSLIVE;UID=LIVE:ODBC;PWD=hotwire2011;" />
+  <setParameter name="AvatarSQLContext-Web.config Connection String" value="Data Source=IT-NB3282\SQLEXPRESS;User Id=luivis7;Password=tinchai;initial catalog=AvatarDb" />
+</parameters>
